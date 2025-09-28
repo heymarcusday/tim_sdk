@@ -5,15 +5,32 @@ class TimSdk {
     return TimSdkPlatform.instance.getPlatformVersion();
   }
 
-  Future<String?> getOpenToyVersion() {
-    return TimSdkPlatform.instance.getOpenToyVersion();
+  // 蓝牙相关方法
+  Future<bool?> initializeBluetooth() {
+    return TimSdkPlatform.instance.initializeBluetooth();
   }
 
-  Future<Map<String, dynamic>?> getOpenToyDeviceInfo() {
-    return TimSdkPlatform.instance.getOpenToyDeviceInfo();
+  Future<bool?> startScan() {
+    return TimSdkPlatform.instance.startScan();
   }
 
-  Future<String?> performOpenToyOperation(String operation) {
-    return TimSdkPlatform.instance.performOpenToyOperation(operation);
+  Future<bool?> stopScan() {
+    return TimSdkPlatform.instance.stopScan();
+  }
+
+  Future<bool?> connectToDevice(String deviceId) {
+    return TimSdkPlatform.instance.connectToDevice(deviceId);
+  }
+
+  Future<bool?> disconnectFromDevice(String deviceId) {
+    return TimSdkPlatform.instance.disconnectFromDevice(deviceId);
+  }
+
+  Future<int?> readBatteryLevel(String deviceId) {
+    return TimSdkPlatform.instance.readBatteryLevel(deviceId);
+  }
+
+  Future<bool?> writeMotor(String deviceId, List<int> pwm) {
+    return TimSdkPlatform.instance.writeMotor(deviceId, pwm);
   }
 }

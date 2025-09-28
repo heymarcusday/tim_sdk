@@ -15,21 +15,46 @@ class MethodChannelTimSdk extends TimSdkPlatform {
     return version;
   }
 
+  // 蓝牙相关方法
   @override
-  Future<String?> getOpenToyVersion() async {
-    final version = await methodChannel.invokeMethod<String>('getOpenToyVersion');
-    return version;
+  Future<bool?> initializeBluetooth() async {
+    final result = await methodChannel.invokeMethod<bool>('initializeBluetooth');
+    return result;
   }
 
   @override
-  Future<Map<String, dynamic>?> getOpenToyDeviceInfo() async {
-    final deviceInfo = await methodChannel.invokeMethod<Map<Object?, Object?>>('getOpenToyDeviceInfo');
-    return deviceInfo?.cast<String, dynamic>();
+  Future<bool?> startScan() async {
+    final result = await methodChannel.invokeMethod<bool>('startScan');
+    return result;
   }
 
   @override
-  Future<String?> performOpenToyOperation(String operation) async {
-    final result = await methodChannel.invokeMethod<String>('performOpenToyOperation', {'operation': operation});
+  Future<bool?> stopScan() async {
+    final result = await methodChannel.invokeMethod<bool>('stopScan');
+    return result;
+  }
+
+  @override
+  Future<bool?> connectToDevice(String deviceId) async {
+    final result = await methodChannel.invokeMethod<bool>('connectToDevice', {'deviceId': deviceId});
+    return result;
+  }
+
+  @override
+  Future<bool?> disconnectFromDevice(String deviceId) async {
+    final result = await methodChannel.invokeMethod<bool>('disconnectFromDevice', {'deviceId': deviceId});
+    return result;
+  }
+
+  @override
+  Future<int?> readBatteryLevel(String deviceId) async {
+    final result = await methodChannel.invokeMethod<int>('readBatteryLevel', {'deviceId': deviceId});
+    return result;
+  }
+
+  @override
+  Future<bool?> writeMotor(String deviceId, List<int> pwm) async {
+    final result = await methodChannel.invokeMethod<bool>('writeMotor', {'deviceId': deviceId, 'pwm': pwm});
     return result;
   }
 }

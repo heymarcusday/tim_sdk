@@ -13,73 +13,29 @@
       },
       {
         "kind": "Import",
-        "name": "UIKit",
-        "printedName": "UIKit",
+        "name": "CoreBluetooth",
+        "printedName": "CoreBluetooth",
         "declKind": "Import",
-        "moduleName": "opentoy_ios"
+        "moduleName": "opentoy_ios",
+        "declAttributes": [
+          "Preconcurrency"
+        ]
       },
       {
         "kind": "TypeDecl",
-        "name": "OpenToyIOS",
-        "printedName": "OpenToyIOS",
+        "name": "OpenToyCoreDelegate",
+        "printedName": "OpenToyCoreDelegate",
         "children": [
           {
-            "kind": "Var",
-            "name": "shared",
-            "printedName": "shared",
+            "kind": "Function",
+            "name": "bluetoothStateChanged",
+            "printedName": "bluetoothStateChanged(_:)",
             "children": [
               {
                 "kind": "TypeNominal",
-                "name": "OpenToyIOS",
-                "printedName": "opentoy_ios.OpenToyIOS",
-                "usr": "s:11opentoy_ios10OpenToyIOSC"
-              }
-            ],
-            "declKind": "Var",
-            "usr": "s:11opentoy_ios10OpenToyIOSC6sharedACvpZ",
-            "mangledName": "$s11opentoy_ios10OpenToyIOSC6sharedACvpZ",
-            "moduleName": "opentoy_ios",
-            "static": true,
-            "declAttributes": [
-              "HasInitialValue",
-              "Final",
-              "HasStorage",
-              "Custom",
-              "AccessControl"
-            ],
-            "isLet": true,
-            "hasStorage": true,
-            "accessors": [
-              {
-                "kind": "Accessor",
-                "name": "Get",
-                "printedName": "Get()",
-                "children": [
-                  {
-                    "kind": "TypeNominal",
-                    "name": "OpenToyIOS",
-                    "printedName": "opentoy_ios.OpenToyIOS",
-                    "usr": "s:11opentoy_ios10OpenToyIOSC"
-                  }
-                ],
-                "declKind": "Accessor",
-                "usr": "s:11opentoy_ios10OpenToyIOSC6sharedACvgZ",
-                "mangledName": "$s11opentoy_ios10OpenToyIOSC6sharedACvgZ",
-                "moduleName": "opentoy_ios",
-                "static": true,
-                "implicit": true,
-                "declAttributes": [
-                  "Final"
-                ],
-                "accessorKind": "get"
-              }
-            ]
-          },
-          {
-            "kind": "Function",
-            "name": "getVersion",
-            "printedName": "getVersion()",
-            "children": [
+                "name": "Void",
+                "printedName": "()"
+              },
               {
                 "kind": "TypeNominal",
                 "name": "String",
@@ -88,20 +44,25 @@
               }
             ],
             "declKind": "Func",
-            "usr": "s:11opentoy_ios10OpenToyIOSC10getVersionSSyF",
-            "mangledName": "$s11opentoy_ios10OpenToyIOSC10getVersionSSyF",
+            "usr": "s:11opentoy_ios19OpenToyCoreDelegateP21bluetoothStateChangedyySSF",
+            "mangledName": "$s11opentoy_ios19OpenToyCoreDelegateP21bluetoothStateChangedyySSF",
             "moduleName": "opentoy_ios",
-            "declAttributes": [
-              "Custom",
-              "AccessControl"
-            ],
+            "genericSig": "<τ_0_0 where τ_0_0 : opentoy_ios.OpenToyCoreDelegate>",
+            "sugared_genericSig": "<Self where Self : opentoy_ios.OpenToyCoreDelegate>",
+            "protocolReq": true,
+            "reqNewWitnessTableEntry": true,
             "funcSelfKind": "NonMutating"
           },
           {
             "kind": "Function",
-            "name": "getDeviceInfo",
-            "printedName": "getDeviceInfo()",
+            "name": "deviceDiscovered",
+            "printedName": "deviceDiscovered(_:)",
             "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Void",
+                "printedName": "()"
+              },
               {
                 "kind": "TypeNominal",
                 "name": "Dictionary",
@@ -123,20 +84,206 @@
               }
             ],
             "declKind": "Func",
-            "usr": "s:11opentoy_ios10OpenToyIOSC13getDeviceInfoSDySSypGyF",
-            "mangledName": "$s11opentoy_ios10OpenToyIOSC13getDeviceInfoSDySSypGyF",
+            "usr": "s:11opentoy_ios19OpenToyCoreDelegateP16deviceDiscoveredyySDySSypGF",
+            "mangledName": "$s11opentoy_ios19OpenToyCoreDelegateP16deviceDiscoveredyySDySSypGF",
             "moduleName": "opentoy_ios",
-            "declAttributes": [
-              "Custom",
-              "AccessControl"
-            ],
+            "genericSig": "<τ_0_0 where τ_0_0 : opentoy_ios.OpenToyCoreDelegate>",
+            "sugared_genericSig": "<Self where Self : opentoy_ios.OpenToyCoreDelegate>",
+            "protocolReq": true,
+            "reqNewWitnessTableEntry": true,
             "funcSelfKind": "NonMutating"
           },
           {
             "kind": "Function",
-            "name": "performOperation",
-            "printedName": "performOperation(_:)",
+            "name": "deviceConnected",
+            "printedName": "deviceConnected(_:deviceInfo:)",
             "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Void",
+                "printedName": "()"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "String",
+                "printedName": "Swift.String",
+                "usr": "s:SS"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "Dictionary",
+                "printedName": "[Swift.String : Any]",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "String",
+                    "printedName": "Swift.String",
+                    "usr": "s:SS"
+                  },
+                  {
+                    "kind": "TypeNominal",
+                    "name": "ProtocolComposition",
+                    "printedName": "Any"
+                  }
+                ],
+                "usr": "s:SD"
+              }
+            ],
+            "declKind": "Func",
+            "usr": "s:11opentoy_ios19OpenToyCoreDelegateP15deviceConnected_0G4InfoySS_SDySSypGtF",
+            "mangledName": "$s11opentoy_ios19OpenToyCoreDelegateP15deviceConnected_0G4InfoySS_SDySSypGtF",
+            "moduleName": "opentoy_ios",
+            "genericSig": "<τ_0_0 where τ_0_0 : opentoy_ios.OpenToyCoreDelegate>",
+            "sugared_genericSig": "<Self where Self : opentoy_ios.OpenToyCoreDelegate>",
+            "protocolReq": true,
+            "reqNewWitnessTableEntry": true,
+            "funcSelfKind": "NonMutating"
+          },
+          {
+            "kind": "Function",
+            "name": "deviceDisconnected",
+            "printedName": "deviceDisconnected(_:error:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Void",
+                "printedName": "()"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "String",
+                "printedName": "Swift.String",
+                "usr": "s:SS"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "Optional",
+                "printedName": "Swift.String?",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "String",
+                    "printedName": "Swift.String",
+                    "usr": "s:SS"
+                  }
+                ],
+                "usr": "s:Sq"
+              }
+            ],
+            "declKind": "Func",
+            "usr": "s:11opentoy_ios19OpenToyCoreDelegateP18deviceDisconnected_5errorySS_SSSgtF",
+            "mangledName": "$s11opentoy_ios19OpenToyCoreDelegateP18deviceDisconnected_5errorySS_SSSgtF",
+            "moduleName": "opentoy_ios",
+            "genericSig": "<τ_0_0 where τ_0_0 : opentoy_ios.OpenToyCoreDelegate>",
+            "sugared_genericSig": "<Self where Self : opentoy_ios.OpenToyCoreDelegate>",
+            "protocolReq": true,
+            "reqNewWitnessTableEntry": true,
+            "funcSelfKind": "NonMutating"
+          },
+          {
+            "kind": "Function",
+            "name": "deviceConnectionFailed",
+            "printedName": "deviceConnectionFailed(_:error:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Void",
+                "printedName": "()"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "String",
+                "printedName": "Swift.String",
+                "usr": "s:SS"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "Optional",
+                "printedName": "Swift.String?",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "String",
+                    "printedName": "Swift.String",
+                    "usr": "s:SS"
+                  }
+                ],
+                "usr": "s:Sq"
+              }
+            ],
+            "declKind": "Func",
+            "usr": "s:11opentoy_ios19OpenToyCoreDelegateP22deviceConnectionFailed_5errorySS_SSSgtF",
+            "mangledName": "$s11opentoy_ios19OpenToyCoreDelegateP22deviceConnectionFailed_5errorySS_SSSgtF",
+            "moduleName": "opentoy_ios",
+            "genericSig": "<τ_0_0 where τ_0_0 : opentoy_ios.OpenToyCoreDelegate>",
+            "sugared_genericSig": "<Self where Self : opentoy_ios.OpenToyCoreDelegate>",
+            "protocolReq": true,
+            "reqNewWitnessTableEntry": true,
+            "funcSelfKind": "NonMutating"
+          },
+          {
+            "kind": "Function",
+            "name": "characteristicValueUpdated",
+            "printedName": "characteristicValueUpdated(_:characteristicId:data:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Void",
+                "printedName": "()"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "String",
+                "printedName": "Swift.String",
+                "usr": "s:SS"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "String",
+                "printedName": "Swift.String",
+                "usr": "s:SS"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "Array",
+                "printedName": "[Swift.UInt8]",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "UInt8",
+                    "printedName": "Swift.UInt8",
+                    "usr": "s:s5UInt8V"
+                  }
+                ],
+                "usr": "s:Sa"
+              }
+            ],
+            "declKind": "Func",
+            "usr": "s:11opentoy_ios19OpenToyCoreDelegateP26characteristicValueUpdated_0G2Id4dataySS_SSSays5UInt8VGtF",
+            "mangledName": "$s11opentoy_ios19OpenToyCoreDelegateP26characteristicValueUpdated_0G2Id4dataySS_SSSays5UInt8VGtF",
+            "moduleName": "opentoy_ios",
+            "genericSig": "<τ_0_0 where τ_0_0 : opentoy_ios.OpenToyCoreDelegate>",
+            "sugared_genericSig": "<Self where Self : opentoy_ios.OpenToyCoreDelegate>",
+            "protocolReq": true,
+            "reqNewWitnessTableEntry": true,
+            "funcSelfKind": "NonMutating"
+          },
+          {
+            "kind": "Function",
+            "name": "characteristicReadFailed",
+            "printedName": "characteristicReadFailed(_:characteristicId:error:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Void",
+                "printedName": "()"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "String",
+                "printedName": "Swift.String",
+                "usr": "s:SS"
+              },
               {
                 "kind": "TypeNominal",
                 "name": "String",
@@ -151,25 +298,721 @@
               }
             ],
             "declKind": "Func",
-            "usr": "s:11opentoy_ios10OpenToyIOSC16performOperationyS2SF",
-            "mangledName": "$s11opentoy_ios10OpenToyIOSC16performOperationyS2SF",
+            "usr": "s:11opentoy_ios19OpenToyCoreDelegateP24characteristicReadFailed_0G2Id5errorySS_S2StF",
+            "mangledName": "$s11opentoy_ios19OpenToyCoreDelegateP24characteristicReadFailed_0G2Id5errorySS_S2StF",
             "moduleName": "opentoy_ios",
-            "declAttributes": [
-              "Custom",
-              "AccessControl"
+            "genericSig": "<τ_0_0 where τ_0_0 : opentoy_ios.OpenToyCoreDelegate>",
+            "sugared_genericSig": "<Self where Self : opentoy_ios.OpenToyCoreDelegate>",
+            "protocolReq": true,
+            "reqNewWitnessTableEntry": true,
+            "funcSelfKind": "NonMutating"
+          },
+          {
+            "kind": "Function",
+            "name": "characteristicWriteSuccess",
+            "printedName": "characteristicWriteSuccess(_:characteristicId:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Void",
+                "printedName": "()"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "String",
+                "printedName": "Swift.String",
+                "usr": "s:SS"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "String",
+                "printedName": "Swift.String",
+                "usr": "s:SS"
+              }
             ],
+            "declKind": "Func",
+            "usr": "s:11opentoy_ios19OpenToyCoreDelegateP26characteristicWriteSuccess_0G2IdySS_SStF",
+            "mangledName": "$s11opentoy_ios19OpenToyCoreDelegateP26characteristicWriteSuccess_0G2IdySS_SStF",
+            "moduleName": "opentoy_ios",
+            "genericSig": "<τ_0_0 where τ_0_0 : opentoy_ios.OpenToyCoreDelegate>",
+            "sugared_genericSig": "<Self where Self : opentoy_ios.OpenToyCoreDelegate>",
+            "protocolReq": true,
+            "reqNewWitnessTableEntry": true,
+            "funcSelfKind": "NonMutating"
+          },
+          {
+            "kind": "Function",
+            "name": "characteristicWriteFailed",
+            "printedName": "characteristicWriteFailed(_:characteristicId:error:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Void",
+                "printedName": "()"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "String",
+                "printedName": "Swift.String",
+                "usr": "s:SS"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "String",
+                "printedName": "Swift.String",
+                "usr": "s:SS"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "String",
+                "printedName": "Swift.String",
+                "usr": "s:SS"
+              }
+            ],
+            "declKind": "Func",
+            "usr": "s:11opentoy_ios19OpenToyCoreDelegateP25characteristicWriteFailed_0G2Id5errorySS_S2StF",
+            "mangledName": "$s11opentoy_ios19OpenToyCoreDelegateP25characteristicWriteFailed_0G2Id5errorySS_S2StF",
+            "moduleName": "opentoy_ios",
+            "genericSig": "<τ_0_0 where τ_0_0 : opentoy_ios.OpenToyCoreDelegate>",
+            "sugared_genericSig": "<Self where Self : opentoy_ios.OpenToyCoreDelegate>",
+            "protocolReq": true,
+            "reqNewWitnessTableEntry": true,
+            "funcSelfKind": "NonMutating"
+          },
+          {
+            "kind": "Function",
+            "name": "servicesDiscoveryFailed",
+            "printedName": "servicesDiscoveryFailed(_:error:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Void",
+                "printedName": "()"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "String",
+                "printedName": "Swift.String",
+                "usr": "s:SS"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "String",
+                "printedName": "Swift.String",
+                "usr": "s:SS"
+              }
+            ],
+            "declKind": "Func",
+            "usr": "s:11opentoy_ios19OpenToyCoreDelegateP23servicesDiscoveryFailed_5errorySS_SStF",
+            "mangledName": "$s11opentoy_ios19OpenToyCoreDelegateP23servicesDiscoveryFailed_5errorySS_SStF",
+            "moduleName": "opentoy_ios",
+            "genericSig": "<τ_0_0 where τ_0_0 : opentoy_ios.OpenToyCoreDelegate>",
+            "sugared_genericSig": "<Self where Self : opentoy_ios.OpenToyCoreDelegate>",
+            "protocolReq": true,
+            "reqNewWitnessTableEntry": true,
+            "funcSelfKind": "NonMutating"
+          },
+          {
+            "kind": "Function",
+            "name": "characteristicsDiscoveryFailed",
+            "printedName": "characteristicsDiscoveryFailed(_:serviceId:error:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Void",
+                "printedName": "()"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "String",
+                "printedName": "Swift.String",
+                "usr": "s:SS"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "String",
+                "printedName": "Swift.String",
+                "usr": "s:SS"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "String",
+                "printedName": "Swift.String",
+                "usr": "s:SS"
+              }
+            ],
+            "declKind": "Func",
+            "usr": "s:11opentoy_ios19OpenToyCoreDelegateP30characteristicsDiscoveryFailed_9serviceId5errorySS_S2StF",
+            "mangledName": "$s11opentoy_ios19OpenToyCoreDelegateP30characteristicsDiscoveryFailed_9serviceId5errorySS_S2StF",
+            "moduleName": "opentoy_ios",
+            "genericSig": "<τ_0_0 where τ_0_0 : opentoy_ios.OpenToyCoreDelegate>",
+            "sugared_genericSig": "<Self where Self : opentoy_ios.OpenToyCoreDelegate>",
+            "protocolReq": true,
+            "reqNewWitnessTableEntry": true,
             "funcSelfKind": "NonMutating"
           }
         ],
-        "declKind": "Class",
-        "usr": "s:11opentoy_ios10OpenToyIOSC",
-        "mangledName": "$s11opentoy_ios10OpenToyIOSC",
+        "declKind": "Protocol",
+        "usr": "s:11opentoy_ios19OpenToyCoreDelegateP",
+        "mangledName": "$s11opentoy_ios19OpenToyCoreDelegateP",
+        "moduleName": "opentoy_ios",
+        "genericSig": "<τ_0_0 : AnyObject>",
+        "sugared_genericSig": "<Self : AnyObject>",
+        "declAttributes": [
+          "AccessControl",
+          "RawDocComment"
+        ],
+        "conformances": [
+          {
+            "kind": "Conformance",
+            "name": "Escapable",
+            "printedName": "Escapable",
+            "usr": "s:s9EscapableP",
+            "mangledName": "$ss9EscapableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Copyable",
+            "printedName": "Copyable",
+            "usr": "s:s8CopyableP",
+            "mangledName": "$ss8CopyableP"
+          }
+        ]
+      },
+      {
+        "kind": "TypeDecl",
+        "name": "OpenToyResult",
+        "printedName": "OpenToyResult",
+        "children": [
+          {
+            "kind": "Var",
+            "name": "success",
+            "printedName": "success",
+            "children": [
+              {
+                "kind": "TypeFunc",
+                "name": "Function",
+                "printedName": "(opentoy_ios.OpenToyResult.Type) -> (Any) -> opentoy_ios.OpenToyResult",
+                "children": [
+                  {
+                    "kind": "TypeFunc",
+                    "name": "Function",
+                    "printedName": "(Any) -> opentoy_ios.OpenToyResult",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "OpenToyResult",
+                        "printedName": "opentoy_ios.OpenToyResult",
+                        "usr": "s:11opentoy_ios13OpenToyResultO"
+                      },
+                      {
+                        "kind": "TypeNominal",
+                        "name": "ProtocolComposition",
+                        "printedName": "Any"
+                      }
+                    ]
+                  },
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Metatype",
+                    "printedName": "opentoy_ios.OpenToyResult.Type",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "OpenToyResult",
+                        "printedName": "opentoy_ios.OpenToyResult",
+                        "usr": "s:11opentoy_ios13OpenToyResultO"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ],
+            "declKind": "EnumElement",
+            "usr": "s:11opentoy_ios13OpenToyResultO7successyACypcACmF",
+            "mangledName": "$s11opentoy_ios13OpenToyResultO7successyACypcACmF",
+            "moduleName": "opentoy_ios"
+          },
+          {
+            "kind": "Var",
+            "name": "failure",
+            "printedName": "failure",
+            "children": [
+              {
+                "kind": "TypeFunc",
+                "name": "Function",
+                "printedName": "(opentoy_ios.OpenToyResult.Type) -> (opentoy_ios.OpenToyError) -> opentoy_ios.OpenToyResult",
+                "children": [
+                  {
+                    "kind": "TypeFunc",
+                    "name": "Function",
+                    "printedName": "(opentoy_ios.OpenToyError) -> opentoy_ios.OpenToyResult",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "OpenToyResult",
+                        "printedName": "opentoy_ios.OpenToyResult",
+                        "usr": "s:11opentoy_ios13OpenToyResultO"
+                      },
+                      {
+                        "kind": "TypeNominal",
+                        "name": "OpenToyError",
+                        "printedName": "opentoy_ios.OpenToyError",
+                        "usr": "s:11opentoy_ios12OpenToyErrorO"
+                      }
+                    ]
+                  },
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Metatype",
+                    "printedName": "opentoy_ios.OpenToyResult.Type",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "OpenToyResult",
+                        "printedName": "opentoy_ios.OpenToyResult",
+                        "usr": "s:11opentoy_ios13OpenToyResultO"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ],
+            "declKind": "EnumElement",
+            "usr": "s:11opentoy_ios13OpenToyResultO7failureyAcA0cD5ErrorOcACmF",
+            "mangledName": "$s11opentoy_ios13OpenToyResultO7failureyAcA0cD5ErrorOcACmF",
+            "moduleName": "opentoy_ios"
+          }
+        ],
+        "declKind": "Enum",
+        "usr": "s:11opentoy_ios13OpenToyResultO",
+        "mangledName": "$s11opentoy_ios13OpenToyResultO",
         "moduleName": "opentoy_ios",
         "declAttributes": [
           "AccessControl",
-          "Custom"
+          "RawDocComment"
         ],
-        "hasMissingDesignatedInitializers": true,
+        "conformances": [
+          {
+            "kind": "Conformance",
+            "name": "Copyable",
+            "printedName": "Copyable",
+            "usr": "s:s8CopyableP",
+            "mangledName": "$ss8CopyableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Escapable",
+            "printedName": "Escapable",
+            "usr": "s:s9EscapableP",
+            "mangledName": "$ss9EscapableP"
+          }
+        ]
+      },
+      {
+        "kind": "TypeDecl",
+        "name": "OpenToyError",
+        "printedName": "OpenToyError",
+        "children": [
+          {
+            "kind": "Var",
+            "name": "bluetoothNotInitialized",
+            "printedName": "bluetoothNotInitialized",
+            "children": [
+              {
+                "kind": "TypeFunc",
+                "name": "Function",
+                "printedName": "(opentoy_ios.OpenToyError.Type) -> opentoy_ios.OpenToyError",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "OpenToyError",
+                    "printedName": "opentoy_ios.OpenToyError",
+                    "usr": "s:11opentoy_ios12OpenToyErrorO"
+                  },
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Metatype",
+                    "printedName": "opentoy_ios.OpenToyError.Type",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "OpenToyError",
+                        "printedName": "opentoy_ios.OpenToyError",
+                        "usr": "s:11opentoy_ios12OpenToyErrorO"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ],
+            "declKind": "EnumElement",
+            "usr": "s:11opentoy_ios12OpenToyErrorO23bluetoothNotInitializedyA2CmF",
+            "mangledName": "$s11opentoy_ios12OpenToyErrorO23bluetoothNotInitializedyA2CmF",
+            "moduleName": "opentoy_ios"
+          },
+          {
+            "kind": "Var",
+            "name": "bluetoothNotAvailable",
+            "printedName": "bluetoothNotAvailable",
+            "children": [
+              {
+                "kind": "TypeFunc",
+                "name": "Function",
+                "printedName": "(opentoy_ios.OpenToyError.Type) -> opentoy_ios.OpenToyError",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "OpenToyError",
+                    "printedName": "opentoy_ios.OpenToyError",
+                    "usr": "s:11opentoy_ios12OpenToyErrorO"
+                  },
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Metatype",
+                    "printedName": "opentoy_ios.OpenToyError.Type",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "OpenToyError",
+                        "printedName": "opentoy_ios.OpenToyError",
+                        "usr": "s:11opentoy_ios12OpenToyErrorO"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ],
+            "declKind": "EnumElement",
+            "usr": "s:11opentoy_ios12OpenToyErrorO21bluetoothNotAvailableyA2CmF",
+            "mangledName": "$s11opentoy_ios12OpenToyErrorO21bluetoothNotAvailableyA2CmF",
+            "moduleName": "opentoy_ios"
+          },
+          {
+            "kind": "Var",
+            "name": "deviceNotFound",
+            "printedName": "deviceNotFound",
+            "children": [
+              {
+                "kind": "TypeFunc",
+                "name": "Function",
+                "printedName": "(opentoy_ios.OpenToyError.Type) -> opentoy_ios.OpenToyError",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "OpenToyError",
+                    "printedName": "opentoy_ios.OpenToyError",
+                    "usr": "s:11opentoy_ios12OpenToyErrorO"
+                  },
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Metatype",
+                    "printedName": "opentoy_ios.OpenToyError.Type",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "OpenToyError",
+                        "printedName": "opentoy_ios.OpenToyError",
+                        "usr": "s:11opentoy_ios12OpenToyErrorO"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ],
+            "declKind": "EnumElement",
+            "usr": "s:11opentoy_ios12OpenToyErrorO14deviceNotFoundyA2CmF",
+            "mangledName": "$s11opentoy_ios12OpenToyErrorO14deviceNotFoundyA2CmF",
+            "moduleName": "opentoy_ios"
+          },
+          {
+            "kind": "Var",
+            "name": "deviceNotConnected",
+            "printedName": "deviceNotConnected",
+            "children": [
+              {
+                "kind": "TypeFunc",
+                "name": "Function",
+                "printedName": "(opentoy_ios.OpenToyError.Type) -> opentoy_ios.OpenToyError",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "OpenToyError",
+                    "printedName": "opentoy_ios.OpenToyError",
+                    "usr": "s:11opentoy_ios12OpenToyErrorO"
+                  },
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Metatype",
+                    "printedName": "opentoy_ios.OpenToyError.Type",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "OpenToyError",
+                        "printedName": "opentoy_ios.OpenToyError",
+                        "usr": "s:11opentoy_ios12OpenToyErrorO"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ],
+            "declKind": "EnumElement",
+            "usr": "s:11opentoy_ios12OpenToyErrorO18deviceNotConnectedyA2CmF",
+            "mangledName": "$s11opentoy_ios12OpenToyErrorO18deviceNotConnectedyA2CmF",
+            "moduleName": "opentoy_ios"
+          },
+          {
+            "kind": "Var",
+            "name": "emptyData",
+            "printedName": "emptyData",
+            "children": [
+              {
+                "kind": "TypeFunc",
+                "name": "Function",
+                "printedName": "(opentoy_ios.OpenToyError.Type) -> opentoy_ios.OpenToyError",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "OpenToyError",
+                    "printedName": "opentoy_ios.OpenToyError",
+                    "usr": "s:11opentoy_ios12OpenToyErrorO"
+                  },
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Metatype",
+                    "printedName": "opentoy_ios.OpenToyError.Type",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "OpenToyError",
+                        "printedName": "opentoy_ios.OpenToyError",
+                        "usr": "s:11opentoy_ios12OpenToyErrorO"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ],
+            "declKind": "EnumElement",
+            "usr": "s:11opentoy_ios12OpenToyErrorO9emptyDatayA2CmF",
+            "mangledName": "$s11opentoy_ios12OpenToyErrorO9emptyDatayA2CmF",
+            "moduleName": "opentoy_ios"
+          },
+          {
+            "kind": "Var",
+            "name": "readFailed",
+            "printedName": "readFailed",
+            "children": [
+              {
+                "kind": "TypeFunc",
+                "name": "Function",
+                "printedName": "(opentoy_ios.OpenToyError.Type) -> (Swift.String) -> opentoy_ios.OpenToyError",
+                "children": [
+                  {
+                    "kind": "TypeFunc",
+                    "name": "Function",
+                    "printedName": "(Swift.String) -> opentoy_ios.OpenToyError",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "OpenToyError",
+                        "printedName": "opentoy_ios.OpenToyError",
+                        "usr": "s:11opentoy_ios12OpenToyErrorO"
+                      },
+                      {
+                        "kind": "TypeNominal",
+                        "name": "String",
+                        "printedName": "Swift.String",
+                        "usr": "s:SS"
+                      }
+                    ]
+                  },
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Metatype",
+                    "printedName": "opentoy_ios.OpenToyError.Type",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "OpenToyError",
+                        "printedName": "opentoy_ios.OpenToyError",
+                        "usr": "s:11opentoy_ios12OpenToyErrorO"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ],
+            "declKind": "EnumElement",
+            "usr": "s:11opentoy_ios12OpenToyErrorO10readFailedyACSScACmF",
+            "mangledName": "$s11opentoy_ios12OpenToyErrorO10readFailedyACSScACmF",
+            "moduleName": "opentoy_ios"
+          },
+          {
+            "kind": "Var",
+            "name": "writeFailed",
+            "printedName": "writeFailed",
+            "children": [
+              {
+                "kind": "TypeFunc",
+                "name": "Function",
+                "printedName": "(opentoy_ios.OpenToyError.Type) -> (Swift.String) -> opentoy_ios.OpenToyError",
+                "children": [
+                  {
+                    "kind": "TypeFunc",
+                    "name": "Function",
+                    "printedName": "(Swift.String) -> opentoy_ios.OpenToyError",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "OpenToyError",
+                        "printedName": "opentoy_ios.OpenToyError",
+                        "usr": "s:11opentoy_ios12OpenToyErrorO"
+                      },
+                      {
+                        "kind": "TypeNominal",
+                        "name": "String",
+                        "printedName": "Swift.String",
+                        "usr": "s:SS"
+                      }
+                    ]
+                  },
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Metatype",
+                    "printedName": "opentoy_ios.OpenToyError.Type",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "OpenToyError",
+                        "printedName": "opentoy_ios.OpenToyError",
+                        "usr": "s:11opentoy_ios12OpenToyErrorO"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ],
+            "declKind": "EnumElement",
+            "usr": "s:11opentoy_ios12OpenToyErrorO11writeFailedyACSScACmF",
+            "mangledName": "$s11opentoy_ios12OpenToyErrorO11writeFailedyACSScACmF",
+            "moduleName": "opentoy_ios"
+          },
+          {
+            "kind": "Var",
+            "name": "invalidArguments",
+            "printedName": "invalidArguments",
+            "children": [
+              {
+                "kind": "TypeFunc",
+                "name": "Function",
+                "printedName": "(opentoy_ios.OpenToyError.Type) -> (Swift.String) -> opentoy_ios.OpenToyError",
+                "children": [
+                  {
+                    "kind": "TypeFunc",
+                    "name": "Function",
+                    "printedName": "(Swift.String) -> opentoy_ios.OpenToyError",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "OpenToyError",
+                        "printedName": "opentoy_ios.OpenToyError",
+                        "usr": "s:11opentoy_ios12OpenToyErrorO"
+                      },
+                      {
+                        "kind": "TypeNominal",
+                        "name": "String",
+                        "printedName": "Swift.String",
+                        "usr": "s:SS"
+                      }
+                    ]
+                  },
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Metatype",
+                    "printedName": "opentoy_ios.OpenToyError.Type",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "OpenToyError",
+                        "printedName": "opentoy_ios.OpenToyError",
+                        "usr": "s:11opentoy_ios12OpenToyErrorO"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ],
+            "declKind": "EnumElement",
+            "usr": "s:11opentoy_ios12OpenToyErrorO16invalidArgumentsyACSScACmF",
+            "mangledName": "$s11opentoy_ios12OpenToyErrorO16invalidArgumentsyACSScACmF",
+            "moduleName": "opentoy_ios"
+          },
+          {
+            "kind": "Var",
+            "name": "errorDescription",
+            "printedName": "errorDescription",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Optional",
+                "printedName": "Swift.String?",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "String",
+                    "printedName": "Swift.String",
+                    "usr": "s:SS"
+                  }
+                ],
+                "usr": "s:Sq"
+              }
+            ],
+            "declKind": "Var",
+            "usr": "s:11opentoy_ios12OpenToyErrorO16errorDescriptionSSSgvp",
+            "mangledName": "$s11opentoy_ios12OpenToyErrorO16errorDescriptionSSSgvp",
+            "moduleName": "opentoy_ios",
+            "declAttributes": [
+              "AccessControl"
+            ],
+            "accessors": [
+              {
+                "kind": "Accessor",
+                "name": "Get",
+                "printedName": "Get()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Optional",
+                    "printedName": "Swift.String?",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "String",
+                        "printedName": "Swift.String",
+                        "usr": "s:SS"
+                      }
+                    ],
+                    "usr": "s:Sq"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:11opentoy_ios12OpenToyErrorO16errorDescriptionSSSgvg",
+                "mangledName": "$s11opentoy_ios12OpenToyErrorO16errorDescriptionSSSgvg",
+                "moduleName": "opentoy_ios",
+                "accessorKind": "get"
+              }
+            ]
+          }
+        ],
+        "declKind": "Enum",
+        "usr": "s:11opentoy_ios12OpenToyErrorO",
+        "mangledName": "$s11opentoy_ios12OpenToyErrorO",
+        "moduleName": "opentoy_ios",
+        "declAttributes": [
+          "AccessControl"
+        ],
         "conformances": [
           {
             "kind": "Conformance",
@@ -187,15 +1030,997 @@
           },
           {
             "kind": "Conformance",
+            "name": "Error",
+            "printedName": "Error",
+            "usr": "s:s5ErrorP",
+            "mangledName": "$ss5ErrorP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "LocalizedError",
+            "printedName": "LocalizedError",
+            "usr": "s:10Foundation14LocalizedErrorP",
+            "mangledName": "$s10Foundation14LocalizedErrorP"
+          },
+          {
+            "kind": "Conformance",
             "name": "Sendable",
             "printedName": "Sendable",
             "usr": "s:s8SendableP",
             "mangledName": "$ss8SendableP"
           }
         ]
+      },
+      {
+        "kind": "TypeDecl",
+        "name": "OpenToyIOS",
+        "printedName": "OpenToyIOS",
+        "children": [
+          {
+            "kind": "Var",
+            "name": "delegate",
+            "printedName": "delegate",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "WeakStorage",
+                "printedName": "(any opentoy_ios.OpenToyCoreDelegate)?"
+              }
+            ],
+            "declKind": "Var",
+            "usr": "s:11opentoy_ios10OpenToyIOSC8delegateAA0cD12CoreDelegate_pSgvp",
+            "mangledName": "$s11opentoy_ios10OpenToyIOSC8delegateAA0cD12CoreDelegate_pSgvp",
+            "moduleName": "opentoy_ios",
+            "declAttributes": [
+              "HasInitialValue",
+              "HasStorage",
+              "ReferenceOwnership",
+              "AccessControl"
+            ],
+            "ownership": 1,
+            "hasStorage": true,
+            "accessors": [
+              {
+                "kind": "Accessor",
+                "name": "Get",
+                "printedName": "Get()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Optional",
+                    "printedName": "(any opentoy_ios.OpenToyCoreDelegate)?",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "OpenToyCoreDelegate",
+                        "printedName": "any opentoy_ios.OpenToyCoreDelegate",
+                        "usr": "s:11opentoy_ios19OpenToyCoreDelegateP"
+                      }
+                    ],
+                    "usr": "s:Sq"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:11opentoy_ios10OpenToyIOSC8delegateAA0cD12CoreDelegate_pSgvg",
+                "mangledName": "$s11opentoy_ios10OpenToyIOSC8delegateAA0cD12CoreDelegate_pSgvg",
+                "moduleName": "opentoy_ios",
+                "implicit": true,
+                "accessorKind": "get"
+              },
+              {
+                "kind": "Accessor",
+                "name": "Set",
+                "printedName": "Set()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Void",
+                    "printedName": "()"
+                  },
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Optional",
+                    "printedName": "(any opentoy_ios.OpenToyCoreDelegate)?",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "OpenToyCoreDelegate",
+                        "printedName": "any opentoy_ios.OpenToyCoreDelegate",
+                        "usr": "s:11opentoy_ios19OpenToyCoreDelegateP"
+                      }
+                    ],
+                    "usr": "s:Sq"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:11opentoy_ios10OpenToyIOSC8delegateAA0cD12CoreDelegate_pSgvs",
+                "mangledName": "$s11opentoy_ios10OpenToyIOSC8delegateAA0cD12CoreDelegate_pSgvs",
+                "moduleName": "opentoy_ios",
+                "implicit": true,
+                "accessorKind": "set"
+              },
+              {
+                "kind": "Accessor",
+                "name": "Modify",
+                "printedName": "Modify()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Void",
+                    "printedName": "()"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:11opentoy_ios10OpenToyIOSC8delegateAA0cD12CoreDelegate_pSgvM",
+                "mangledName": "$s11opentoy_ios10OpenToyIOSC8delegateAA0cD12CoreDelegate_pSgvM",
+                "moduleName": "opentoy_ios",
+                "implicit": true,
+                "accessorKind": "_modify"
+              }
+            ]
+          },
+          {
+            "kind": "Constructor",
+            "name": "init",
+            "printedName": "init()",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "OpenToyIOS",
+                "printedName": "opentoy_ios.OpenToyIOS",
+                "usr": "c:@M@opentoy_ios@objc(cs)OpenToyIOS"
+              }
+            ],
+            "declKind": "Constructor",
+            "usr": "c:@M@opentoy_ios@objc(cs)OpenToyIOS(im)init",
+            "mangledName": "$s11opentoy_ios10OpenToyIOSCACycfc",
+            "moduleName": "opentoy_ios",
+            "overriding": true,
+            "objc_name": "init",
+            "declAttributes": [
+              "Dynamic",
+              "ObjC",
+              "Override",
+              "AccessControl"
+            ],
+            "init_kind": "Designated"
+          },
+          {
+            "kind": "Function",
+            "name": "initializeBluetooth",
+            "printedName": "initializeBluetooth()",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "OpenToyResult",
+                "printedName": "opentoy_ios.OpenToyResult",
+                "usr": "s:11opentoy_ios13OpenToyResultO"
+              }
+            ],
+            "declKind": "Func",
+            "usr": "s:11opentoy_ios10OpenToyIOSC19initializeBluetoothAA0cD6ResultOyF",
+            "mangledName": "$s11opentoy_ios10OpenToyIOSC19initializeBluetoothAA0cD6ResultOyF",
+            "moduleName": "opentoy_ios",
+            "declAttributes": [
+              "AccessControl",
+              "RawDocComment"
+            ],
+            "funcSelfKind": "NonMutating"
+          },
+          {
+            "kind": "Function",
+            "name": "startScan",
+            "printedName": "startScan()",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "OpenToyResult",
+                "printedName": "opentoy_ios.OpenToyResult",
+                "usr": "s:11opentoy_ios13OpenToyResultO"
+              }
+            ],
+            "declKind": "Func",
+            "usr": "s:11opentoy_ios10OpenToyIOSC9startScanAA0cD6ResultOyF",
+            "mangledName": "$s11opentoy_ios10OpenToyIOSC9startScanAA0cD6ResultOyF",
+            "moduleName": "opentoy_ios",
+            "declAttributes": [
+              "AccessControl"
+            ],
+            "funcSelfKind": "NonMutating"
+          },
+          {
+            "kind": "Function",
+            "name": "stopScan",
+            "printedName": "stopScan()",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "OpenToyResult",
+                "printedName": "opentoy_ios.OpenToyResult",
+                "usr": "s:11opentoy_ios13OpenToyResultO"
+              }
+            ],
+            "declKind": "Func",
+            "usr": "s:11opentoy_ios10OpenToyIOSC8stopScanAA0cD6ResultOyF",
+            "mangledName": "$s11opentoy_ios10OpenToyIOSC8stopScanAA0cD6ResultOyF",
+            "moduleName": "opentoy_ios",
+            "declAttributes": [
+              "AccessControl"
+            ],
+            "funcSelfKind": "NonMutating"
+          },
+          {
+            "kind": "Function",
+            "name": "connectToDevice",
+            "printedName": "connectToDevice(deviceId:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "OpenToyResult",
+                "printedName": "opentoy_ios.OpenToyResult",
+                "usr": "s:11opentoy_ios13OpenToyResultO"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "String",
+                "printedName": "Swift.String",
+                "usr": "s:SS"
+              }
+            ],
+            "declKind": "Func",
+            "usr": "s:11opentoy_ios10OpenToyIOSC15connectToDevice8deviceIdAA0cD6ResultOSS_tF",
+            "mangledName": "$s11opentoy_ios10OpenToyIOSC15connectToDevice8deviceIdAA0cD6ResultOSS_tF",
+            "moduleName": "opentoy_ios",
+            "declAttributes": [
+              "AccessControl"
+            ],
+            "funcSelfKind": "NonMutating"
+          },
+          {
+            "kind": "Function",
+            "name": "disconnectFromDevice",
+            "printedName": "disconnectFromDevice(deviceId:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "OpenToyResult",
+                "printedName": "opentoy_ios.OpenToyResult",
+                "usr": "s:11opentoy_ios13OpenToyResultO"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "String",
+                "printedName": "Swift.String",
+                "usr": "s:SS"
+              }
+            ],
+            "declKind": "Func",
+            "usr": "s:11opentoy_ios10OpenToyIOSC20disconnectFromDevice8deviceIdAA0cD6ResultOSS_tF",
+            "mangledName": "$s11opentoy_ios10OpenToyIOSC20disconnectFromDevice8deviceIdAA0cD6ResultOSS_tF",
+            "moduleName": "opentoy_ios",
+            "declAttributes": [
+              "AccessControl"
+            ],
+            "funcSelfKind": "NonMutating"
+          },
+          {
+            "kind": "Function",
+            "name": "readBatteryLevel",
+            "printedName": "readBatteryLevel(deviceId:completion:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Void",
+                "printedName": "()"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "String",
+                "printedName": "Swift.String",
+                "usr": "s:SS"
+              },
+              {
+                "kind": "TypeFunc",
+                "name": "Function",
+                "printedName": "(opentoy_ios.OpenToyResult) -> ()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Void",
+                    "printedName": "()"
+                  },
+                  {
+                    "kind": "TypeNominal",
+                    "name": "OpenToyResult",
+                    "printedName": "opentoy_ios.OpenToyResult",
+                    "usr": "s:11opentoy_ios13OpenToyResultO"
+                  }
+                ]
+              }
+            ],
+            "declKind": "Func",
+            "usr": "s:11opentoy_ios10OpenToyIOSC16readBatteryLevel8deviceId10completionySS_yAA0cD6ResultOctF",
+            "mangledName": "$s11opentoy_ios10OpenToyIOSC16readBatteryLevel8deviceId10completionySS_yAA0cD6ResultOctF",
+            "moduleName": "opentoy_ios",
+            "declAttributes": [
+              "AccessControl"
+            ],
+            "funcSelfKind": "NonMutating"
+          },
+          {
+            "kind": "Function",
+            "name": "writeMotor",
+            "printedName": "writeMotor(deviceId:pwm:completion:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Void",
+                "printedName": "()"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "String",
+                "printedName": "Swift.String",
+                "usr": "s:SS"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "Array",
+                "printedName": "[Swift.Int]",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Int",
+                    "printedName": "Swift.Int",
+                    "usr": "s:Si"
+                  }
+                ],
+                "usr": "s:Sa"
+              },
+              {
+                "kind": "TypeFunc",
+                "name": "Function",
+                "printedName": "(opentoy_ios.OpenToyResult) -> ()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Void",
+                    "printedName": "()"
+                  },
+                  {
+                    "kind": "TypeNominal",
+                    "name": "OpenToyResult",
+                    "printedName": "opentoy_ios.OpenToyResult",
+                    "usr": "s:11opentoy_ios13OpenToyResultO"
+                  }
+                ]
+              }
+            ],
+            "declKind": "Func",
+            "usr": "s:11opentoy_ios10OpenToyIOSC10writeMotor8deviceId3pwm10completionySS_SaySiGyAA0cD6ResultOctF",
+            "mangledName": "$s11opentoy_ios10OpenToyIOSC10writeMotor8deviceId3pwm10completionySS_SaySiGyAA0cD6ResultOctF",
+            "moduleName": "opentoy_ios",
+            "declAttributes": [
+              "AccessControl"
+            ],
+            "funcSelfKind": "NonMutating"
+          },
+          {
+            "kind": "Function",
+            "name": "centralManagerDidUpdateState",
+            "printedName": "centralManagerDidUpdateState(_:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Void",
+                "printedName": "()"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "CBCentralManager",
+                "printedName": "CoreBluetooth.CBCentralManager",
+                "usr": "c:objc(cs)CBCentralManager"
+              }
+            ],
+            "declKind": "Func",
+            "usr": "c:@CM@opentoy_ios@objc(cs)OpenToyIOS(im)centralManagerDidUpdateState:",
+            "mangledName": "$s11opentoy_ios10OpenToyIOSC28centralManagerDidUpdateStateyySo09CBCentralG0CF",
+            "moduleName": "opentoy_ios",
+            "objc_name": "centralManagerDidUpdateState:",
+            "declAttributes": [
+              "Dynamic",
+              "ObjC",
+              "AccessControl"
+            ],
+            "isFromExtension": true,
+            "funcSelfKind": "NonMutating"
+          },
+          {
+            "kind": "Function",
+            "name": "centralManager",
+            "printedName": "centralManager(_:didDiscover:advertisementData:rssi:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Void",
+                "printedName": "()"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "CBCentralManager",
+                "printedName": "CoreBluetooth.CBCentralManager",
+                "usr": "c:objc(cs)CBCentralManager"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "CBPeripheral",
+                "printedName": "CoreBluetooth.CBPeripheral",
+                "usr": "c:objc(cs)CBPeripheral"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "Dictionary",
+                "printedName": "[Swift.String : Any]",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "String",
+                    "printedName": "Swift.String",
+                    "usr": "s:SS"
+                  },
+                  {
+                    "kind": "TypeNominal",
+                    "name": "ProtocolComposition",
+                    "printedName": "Any"
+                  }
+                ],
+                "usr": "s:SD"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "NSNumber",
+                "printedName": "Foundation.NSNumber",
+                "usr": "c:objc(cs)NSNumber"
+              }
+            ],
+            "declKind": "Func",
+            "usr": "c:@CM@opentoy_ios@objc(cs)OpenToyIOS(im)centralManager:didDiscoverPeripheral:advertisementData:RSSI:",
+            "mangledName": "$s11opentoy_ios10OpenToyIOSC14centralManager_11didDiscover17advertisementData4rssiySo09CBCentralG0C_So12CBPeripheralCSDySSypGSo8NSNumberCtF",
+            "moduleName": "opentoy_ios",
+            "objc_name": "centralManager:didDiscoverPeripheral:advertisementData:RSSI:",
+            "declAttributes": [
+              "Dynamic",
+              "ObjC",
+              "AccessControl"
+            ],
+            "isFromExtension": true,
+            "funcSelfKind": "NonMutating"
+          },
+          {
+            "kind": "Function",
+            "name": "centralManager",
+            "printedName": "centralManager(_:didConnect:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Void",
+                "printedName": "()"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "CBCentralManager",
+                "printedName": "CoreBluetooth.CBCentralManager",
+                "usr": "c:objc(cs)CBCentralManager"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "CBPeripheral",
+                "printedName": "CoreBluetooth.CBPeripheral",
+                "usr": "c:objc(cs)CBPeripheral"
+              }
+            ],
+            "declKind": "Func",
+            "usr": "c:@CM@opentoy_ios@objc(cs)OpenToyIOS(im)centralManager:didConnectPeripheral:",
+            "mangledName": "$s11opentoy_ios10OpenToyIOSC14centralManager_10didConnectySo09CBCentralG0C_So12CBPeripheralCtF",
+            "moduleName": "opentoy_ios",
+            "objc_name": "centralManager:didConnectPeripheral:",
+            "declAttributes": [
+              "Dynamic",
+              "ObjC",
+              "AccessControl"
+            ],
+            "isFromExtension": true,
+            "funcSelfKind": "NonMutating"
+          },
+          {
+            "kind": "Function",
+            "name": "centralManager",
+            "printedName": "centralManager(_:didDisconnectPeripheral:error:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Void",
+                "printedName": "()"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "CBCentralManager",
+                "printedName": "CoreBluetooth.CBCentralManager",
+                "usr": "c:objc(cs)CBCentralManager"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "CBPeripheral",
+                "printedName": "CoreBluetooth.CBPeripheral",
+                "usr": "c:objc(cs)CBPeripheral"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "Optional",
+                "printedName": "(any Swift.Error)?",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Error",
+                    "printedName": "any Swift.Error",
+                    "usr": "s:s5ErrorP"
+                  }
+                ],
+                "usr": "s:Sq"
+              }
+            ],
+            "declKind": "Func",
+            "usr": "c:@CM@opentoy_ios@objc(cs)OpenToyIOS(im)centralManager:didDisconnectPeripheral:error:",
+            "mangledName": "$s11opentoy_ios10OpenToyIOSC14centralManager_23didDisconnectPeripheral5errorySo09CBCentralG0C_So12CBPeripheralCs5Error_pSgtF",
+            "moduleName": "opentoy_ios",
+            "objc_name": "centralManager:didDisconnectPeripheral:error:",
+            "declAttributes": [
+              "Dynamic",
+              "ObjC",
+              "AccessControl"
+            ],
+            "isFromExtension": true,
+            "funcSelfKind": "NonMutating"
+          },
+          {
+            "kind": "Function",
+            "name": "centralManager",
+            "printedName": "centralManager(_:didFailToConnect:error:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Void",
+                "printedName": "()"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "CBCentralManager",
+                "printedName": "CoreBluetooth.CBCentralManager",
+                "usr": "c:objc(cs)CBCentralManager"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "CBPeripheral",
+                "printedName": "CoreBluetooth.CBPeripheral",
+                "usr": "c:objc(cs)CBPeripheral"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "Optional",
+                "printedName": "(any Swift.Error)?",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Error",
+                    "printedName": "any Swift.Error",
+                    "usr": "s:s5ErrorP"
+                  }
+                ],
+                "usr": "s:Sq"
+              }
+            ],
+            "declKind": "Func",
+            "usr": "c:@CM@opentoy_ios@objc(cs)OpenToyIOS(im)centralManager:didFailToConnectPeripheral:error:",
+            "mangledName": "$s11opentoy_ios10OpenToyIOSC14centralManager_16didFailToConnect5errorySo09CBCentralG0C_So12CBPeripheralCs5Error_pSgtF",
+            "moduleName": "opentoy_ios",
+            "objc_name": "centralManager:didFailToConnectPeripheral:error:",
+            "declAttributes": [
+              "Dynamic",
+              "ObjC",
+              "AccessControl"
+            ],
+            "isFromExtension": true,
+            "funcSelfKind": "NonMutating"
+          },
+          {
+            "kind": "Function",
+            "name": "peripheral",
+            "printedName": "peripheral(_:didDiscoverServices:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Void",
+                "printedName": "()"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "CBPeripheral",
+                "printedName": "CoreBluetooth.CBPeripheral",
+                "usr": "c:objc(cs)CBPeripheral"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "Optional",
+                "printedName": "(any Swift.Error)?",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Error",
+                    "printedName": "any Swift.Error",
+                    "usr": "s:s5ErrorP"
+                  }
+                ],
+                "usr": "s:Sq"
+              }
+            ],
+            "declKind": "Func",
+            "usr": "c:@CM@opentoy_ios@objc(cs)OpenToyIOS(im)peripheral:didDiscoverServices:",
+            "mangledName": "$s11opentoy_ios10OpenToyIOSC10peripheral_19didDiscoverServicesySo12CBPeripheralC_s5Error_pSgtF",
+            "moduleName": "opentoy_ios",
+            "objc_name": "peripheral:didDiscoverServices:",
+            "declAttributes": [
+              "Dynamic",
+              "ObjC",
+              "AccessControl"
+            ],
+            "isFromExtension": true,
+            "funcSelfKind": "NonMutating"
+          },
+          {
+            "kind": "Function",
+            "name": "peripheral",
+            "printedName": "peripheral(_:didDiscoverCharacteristicsFor:error:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Void",
+                "printedName": "()"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "CBPeripheral",
+                "printedName": "CoreBluetooth.CBPeripheral",
+                "usr": "c:objc(cs)CBPeripheral"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "CBService",
+                "printedName": "CoreBluetooth.CBService",
+                "usr": "c:objc(cs)CBService"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "Optional",
+                "printedName": "(any Swift.Error)?",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Error",
+                    "printedName": "any Swift.Error",
+                    "usr": "s:s5ErrorP"
+                  }
+                ],
+                "usr": "s:Sq"
+              }
+            ],
+            "declKind": "Func",
+            "usr": "c:@CM@opentoy_ios@objc(cs)OpenToyIOS(im)peripheral:didDiscoverCharacteristicsForService:error:",
+            "mangledName": "$s11opentoy_ios10OpenToyIOSC10peripheral_29didDiscoverCharacteristicsFor5errorySo12CBPeripheralC_So9CBServiceCs5Error_pSgtF",
+            "moduleName": "opentoy_ios",
+            "objc_name": "peripheral:didDiscoverCharacteristicsForService:error:",
+            "declAttributes": [
+              "Dynamic",
+              "ObjC",
+              "AccessControl"
+            ],
+            "isFromExtension": true,
+            "funcSelfKind": "NonMutating"
+          },
+          {
+            "kind": "Function",
+            "name": "peripheral",
+            "printedName": "peripheral(_:didUpdateValueFor:error:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Void",
+                "printedName": "()"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "CBPeripheral",
+                "printedName": "CoreBluetooth.CBPeripheral",
+                "usr": "c:objc(cs)CBPeripheral"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "CBCharacteristic",
+                "printedName": "CoreBluetooth.CBCharacteristic",
+                "usr": "c:objc(cs)CBCharacteristic"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "Optional",
+                "printedName": "(any Swift.Error)?",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Error",
+                    "printedName": "any Swift.Error",
+                    "usr": "s:s5ErrorP"
+                  }
+                ],
+                "usr": "s:Sq"
+              }
+            ],
+            "declKind": "Func",
+            "usr": "c:@CM@opentoy_ios@objc(cs)OpenToyIOS(im)peripheral:didUpdateValueForCharacteristic:error:",
+            "mangledName": "$s11opentoy_ios10OpenToyIOSC10peripheral_17didUpdateValueFor5errorySo12CBPeripheralC_So16CBCharacteristicCs5Error_pSgtF",
+            "moduleName": "opentoy_ios",
+            "objc_name": "peripheral:didUpdateValueForCharacteristic:error:",
+            "declAttributes": [
+              "Dynamic",
+              "ObjC",
+              "AccessControl"
+            ],
+            "isFromExtension": true,
+            "funcSelfKind": "NonMutating"
+          },
+          {
+            "kind": "Function",
+            "name": "peripheral",
+            "printedName": "peripheral(_:didWriteValueFor:error:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Void",
+                "printedName": "()"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "CBPeripheral",
+                "printedName": "CoreBluetooth.CBPeripheral",
+                "usr": "c:objc(cs)CBPeripheral"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "CBCharacteristic",
+                "printedName": "CoreBluetooth.CBCharacteristic",
+                "usr": "c:objc(cs)CBCharacteristic"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "Optional",
+                "printedName": "(any Swift.Error)?",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Error",
+                    "printedName": "any Swift.Error",
+                    "usr": "s:s5ErrorP"
+                  }
+                ],
+                "usr": "s:Sq"
+              }
+            ],
+            "declKind": "Func",
+            "usr": "c:@CM@opentoy_ios@objc(cs)OpenToyIOS(im)peripheral:didWriteValueForCharacteristic:error:",
+            "mangledName": "$s11opentoy_ios10OpenToyIOSC10peripheral_16didWriteValueFor5errorySo12CBPeripheralC_So16CBCharacteristicCs5Error_pSgtF",
+            "moduleName": "opentoy_ios",
+            "objc_name": "peripheral:didWriteValueForCharacteristic:error:",
+            "declAttributes": [
+              "Dynamic",
+              "ObjC",
+              "AccessControl"
+            ],
+            "isFromExtension": true,
+            "funcSelfKind": "NonMutating"
+          }
+        ],
+        "declKind": "Class",
+        "usr": "c:@M@opentoy_ios@objc(cs)OpenToyIOS",
+        "mangledName": "$s11opentoy_ios10OpenToyIOSC",
+        "moduleName": "opentoy_ios",
+        "declAttributes": [
+          "AccessControl",
+          "ObjC"
+        ],
+        "superclassUsr": "c:objc(cs)NSObject",
+        "inheritsConvenienceInitializers": true,
+        "superclassNames": [
+          "ObjectiveC.NSObject"
+        ],
+        "conformances": [
+          {
+            "kind": "Conformance",
+            "name": "Copyable",
+            "printedName": "Copyable",
+            "usr": "s:s8CopyableP",
+            "mangledName": "$ss8CopyableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Escapable",
+            "printedName": "Escapable",
+            "usr": "s:s9EscapableP",
+            "mangledName": "$ss9EscapableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Equatable",
+            "printedName": "Equatable",
+            "usr": "s:SQ",
+            "mangledName": "$sSQ"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Hashable",
+            "printedName": "Hashable",
+            "usr": "s:SH",
+            "mangledName": "$sSH"
+          },
+          {
+            "kind": "Conformance",
+            "name": "CVarArg",
+            "printedName": "CVarArg",
+            "usr": "s:s7CVarArgP",
+            "mangledName": "$ss7CVarArgP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "_KeyValueCodingAndObservingPublishing",
+            "printedName": "_KeyValueCodingAndObservingPublishing",
+            "usr": "s:10Foundation37_KeyValueCodingAndObservingPublishingP",
+            "mangledName": "$s10Foundation37_KeyValueCodingAndObservingPublishingP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "_KeyValueCodingAndObserving",
+            "printedName": "_KeyValueCodingAndObserving",
+            "usr": "s:10Foundation27_KeyValueCodingAndObservingP",
+            "mangledName": "$s10Foundation27_KeyValueCodingAndObservingP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "CustomStringConvertible",
+            "printedName": "CustomStringConvertible",
+            "usr": "s:s23CustomStringConvertibleP",
+            "mangledName": "$ss23CustomStringConvertibleP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "CustomDebugStringConvertible",
+            "printedName": "CustomDebugStringConvertible",
+            "usr": "s:s28CustomDebugStringConvertibleP",
+            "mangledName": "$ss28CustomDebugStringConvertibleP"
+          }
+        ]
       }
     ],
     "json_format_version": 8
   },
-  "ConstValues": []
+  "ConstValues": [
+    {
+      "filePath": "\/Users\/ddd\/GitHub\/opentoy_workspace\/opentoy_ios\/Sources\/opentoy_ios\/opentoy_ios.swift",
+      "kind": "Dictionary",
+      "offset": 2281,
+      "length": 3,
+      "value": "[]"
+    },
+    {
+      "filePath": "\/Users\/ddd\/GitHub\/opentoy_workspace\/opentoy_ios\/Sources\/opentoy_ios\/opentoy_ios.swift",
+      "kind": "Dictionary",
+      "offset": 2348,
+      "length": 3,
+      "value": "[]"
+    },
+    {
+      "filePath": "\/Users\/ddd\/GitHub\/opentoy_workspace\/opentoy_ios\/Sources\/opentoy_ios\/opentoy_ios.swift",
+      "kind": "Dictionary",
+      "offset": 2418,
+      "length": 3,
+      "value": "[]"
+    },
+    {
+      "filePath": "\/Users\/ddd\/GitHub\/opentoy_workspace\/opentoy_ios\/Sources\/opentoy_ios\/opentoy_ios.swift",
+      "kind": "StringLiteral",
+      "offset": 8494,
+      "length": 44,
+      "value": "\"com.opentoy.discovery.\""
+    },
+    {
+      "filePath": "\/Users\/ddd\/GitHub\/opentoy_workspace\/opentoy_ios\/Sources\/opentoy_ios\/opentoy_ios.swift",
+      "kind": "StringLiteral",
+      "offset": 8537,
+      "length": 2,
+      "value": "\"\""
+    },
+    {
+      "filePath": "\/Users\/ddd\/GitHub\/opentoy_workspace\/opentoy_ios\/Sources\/opentoy_ios\/opentoy_ios.swift",
+      "kind": "Array",
+      "offset": 8576,
+      "length": 2,
+      "value": "[]"
+    },
+    {
+      "filePath": "\/Users\/ddd\/GitHub\/opentoy_workspace\/opentoy_ios\/Sources\/opentoy_ios\/opentoy_ios.swift",
+      "kind": "Dictionary",
+      "offset": 8641,
+      "length": 3,
+      "value": "[]"
+    },
+    {
+      "filePath": "\/Users\/ddd\/GitHub\/opentoy_workspace\/opentoy_ios\/Sources\/opentoy_ios\/opentoy_ios.swift",
+      "kind": "Array",
+      "offset": 8686,
+      "length": 2,
+      "value": "[]"
+    },
+    {
+      "filePath": "\/Users\/ddd\/GitHub\/opentoy_workspace\/opentoy_ios\/Sources\/opentoy_ios\/opentoy_ios.swift",
+      "kind": "Dictionary",
+      "offset": 8753,
+      "length": 3,
+      "value": "[]"
+    },
+    {
+      "filePath": "\/Users\/ddd\/GitHub\/opentoy_workspace\/opentoy_ios\/Sources\/opentoy_ios\/opentoy_ios.swift",
+      "kind": "Dictionary",
+      "offset": 8822,
+      "length": 3,
+      "value": "[]"
+    },
+    {
+      "filePath": "\/Users\/ddd\/GitHub\/opentoy_workspace\/opentoy_ios\/Sources\/opentoy_ios\/opentoy_ios.swift",
+      "kind": "StringLiteral",
+      "offset": 9461,
+      "length": 38,
+      "value": "\"0000180F-0000-1000-8000-00805F9B34FB\""
+    },
+    {
+      "filePath": "\/Users\/ddd\/GitHub\/opentoy_workspace\/opentoy_ios\/Sources\/opentoy_ios\/opentoy_ios.swift",
+      "kind": "StringLiteral",
+      "offset": 9547,
+      "length": 38,
+      "value": "\"00006011-0000-1000-8000-00805F9B34FB\""
+    },
+    {
+      "filePath": "\/Users\/ddd\/GitHub\/opentoy_workspace\/opentoy_ios\/Sources\/opentoy_ios\/opentoy_ios.swift",
+      "kind": "StringLiteral",
+      "offset": 9642,
+      "length": 38,
+      "value": "\"00002A19-0000-1000-8000-00805F9B34FB\""
+    },
+    {
+      "filePath": "\/Users\/ddd\/GitHub\/opentoy_workspace\/opentoy_ios\/Sources\/opentoy_ios\/opentoy_ios.swift",
+      "kind": "StringLiteral",
+      "offset": 9735,
+      "length": 38,
+      "value": "\"00006012-0000-1000-8000-00805F9B34FB\""
+    },
+    {
+      "filePath": "\/Users\/ddd\/GitHub\/opentoy_workspace\/opentoy_ios\/Sources\/opentoy_ios\/opentoy_ios.swift",
+      "kind": "StringLiteral",
+      "offset": 9832,
+      "length": 38,
+      "value": "\"00006013-0000-1000-8000-00805F9B34FB\""
+    },
+    {
+      "filePath": "\/Users\/ddd\/GitHub\/opentoy_workspace\/opentoy_ios\/Sources\/opentoy_ios\/opentoy_ios.swift",
+      "kind": "StringLiteral",
+      "offset": 9930,
+      "length": 38,
+      "value": "\"00006014-0000-1000-8000-00805F9B34FB\""
+    }
+  ]
 }

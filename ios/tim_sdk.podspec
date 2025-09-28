@@ -7,7 +7,10 @@ Pod::Spec.new do |s|
   s.version          = '0.0.1'
   s.summary          = 'TIM SDK for Flutter.'
   s.description      = <<-DESC
-A new Flutter plugin project.
+A Flutter plugin that provides Bluetooth Low Energy functionality for connecting to OpenToy devices.
+This plugin requires Bluetooth permissions to be declared in your app's Info.plist:
+- NSBluetoothAlwaysUsageDescription
+- NSBluetoothPeripheralUsageDescription
                        DESC
   s.homepage         = 'https://github.com/heymarcusday/tim_sdk'
   s.license          = { :file => '../LICENSE' }

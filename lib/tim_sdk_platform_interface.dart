@@ -27,15 +27,32 @@ abstract class TimSdkPlatform extends PlatformInterface {
     throw UnimplementedError('platformVersion() has not been implemented.');
   }
 
-  Future<String?> getOpenToyVersion() {
-    throw UnimplementedError('getOpenToyVersion() has not been implemented.');
+  // 蓝牙相关方法
+  Future<bool?> initializeBluetooth() {
+    throw UnimplementedError('initializeBluetooth() has not been implemented.');
   }
 
-  Future<Map<String, dynamic>?> getOpenToyDeviceInfo() {
-    throw UnimplementedError('getOpenToyDeviceInfo() has not been implemented.');
+  Future<bool?> startScan() {
+    throw UnimplementedError('startScan() has not been implemented.');
   }
 
-  Future<String?> performOpenToyOperation(String operation) {
-    throw UnimplementedError('performOpenToyOperation() has not been implemented.');
+  Future<bool?> stopScan() {
+    throw UnimplementedError('stopScan() has not been implemented.');
+  }
+
+  Future<bool?> connectToDevice(String deviceId) {
+    throw UnimplementedError('connectToDevice() has not been implemented.');
+  }
+
+  Future<bool?> disconnectFromDevice(String deviceId) {
+    throw UnimplementedError('disconnectFromDevice() has not been implemented.');
+  }
+
+  Future<int?> readBatteryLevel(String deviceId) {
+    throw UnimplementedError('readBatteryLevel() has not been implemented.');
+  }
+
+  Future<bool?> writeMotor(String deviceId, List<int> pwm) {
+    throw UnimplementedError('writeMotor() has not been implemented.');
   }
 }

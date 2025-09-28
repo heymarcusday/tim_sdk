@@ -1,17 +1,65 @@
 // swift-interface-format-version: 1.0
-// swift-compiler-version: Apple Swift version 6.1.2 (swiftlang-6.1.2.1.2 clang-1700.0.13.5)
-// swift-module-flags: -target arm64-apple-ios13.0-simulator -enable-objc-interop -enable-library-evolution -swift-version 6 -O -module-name opentoy_ios -package-name opentoy_ios
+// swift-compiler-version: Apple Swift version 6.1.2 effective-5.10 (swiftlang-6.1.2.1.2 clang-1700.0.13.5)
+// swift-module-flags: -target arm64-apple-ios13.0-simulator -enable-objc-interop -enable-library-evolution -swift-version 5 -O -module-name opentoy_ios -package-name opentoy_ios
 // swift-module-flags-ignorable:  -interface-compiler-version 6.1.2
+import CoreBluetooth
 import Foundation
 import Swift
-import UIKit
 import _Concurrency
 import _StringProcessing
 import _SwiftConcurrencyShims
-@_hasMissingDesignatedInitializers @_Concurrency.MainActor public class OpenToyIOS : @unchecked Swift.Sendable {
-  @_Concurrency.MainActor public static let shared: opentoy_ios.OpenToyIOS
-  @_Concurrency.MainActor public func getVersion() -> Swift.String
-  @_Concurrency.MainActor public func getDeviceInfo() -> [Swift.String : Any]
-  @_Concurrency.MainActor public func performOperation(_ operation: Swift.String) -> Swift.String
+public protocol OpenToyCoreDelegate : AnyObject {
+  func bluetoothStateChanged(_ state: Swift.String)
+  func deviceDiscovered(_ device: [Swift.String : Any])
+  func deviceConnected(_ deviceId: Swift.String, deviceInfo: [Swift.String : Any])
+  func deviceDisconnected(_ deviceId: Swift.String, error: Swift.String?)
+  func deviceConnectionFailed(_ deviceId: Swift.String, error: Swift.String?)
+  func characteristicValueUpdated(_ deviceId: Swift.String, characteristicId: Swift.String, data: [Swift.UInt8])
+  func characteristicReadFailed(_ deviceId: Swift.String, characteristicId: Swift.String, error: Swift.String)
+  func characteristicWriteSuccess(_ deviceId: Swift.String, characteristicId: Swift.String)
+  func characteristicWriteFailed(_ deviceId: Swift.String, characteristicId: Swift.String, error: Swift.String)
+  func servicesDiscoveryFailed(_ deviceId: Swift.String, error: Swift.String)
+  func characteristicsDiscoveryFailed(_ deviceId: Swift.String, serviceId: Swift.String, error: Swift.String)
+}
+public enum OpenToyResult {
+  case success(Any)
+  case failure(opentoy_ios.OpenToyError)
+}
+public enum OpenToyError : Swift.Error, Foundation.LocalizedError {
+  case bluetoothNotInitialized
+  case bluetoothNotAvailable
+  case deviceNotFound
+  case deviceNotConnected
+  case emptyData
+  case readFailed(Swift.String)
+  case writeFailed(Swift.String)
+  case invalidArguments(Swift.String)
+  public var errorDescription: Swift.String? {
+    get
+  }
+}
+@objc @_inheritsConvenienceInitializers public class OpenToyIOS : ObjectiveC.NSObject {
+  weak public var delegate: (any opentoy_ios.OpenToyCoreDelegate)?
+  @objc override dynamic public init()
+  public func initializeBluetooth() -> opentoy_ios.OpenToyResult
+  public func startScan() -> opentoy_ios.OpenToyResult
+  public func stopScan() -> opentoy_ios.OpenToyResult
+  public func connectToDevice(deviceId: Swift.String) -> opentoy_ios.OpenToyResult
+  public func disconnectFromDevice(deviceId: Swift.String) -> opentoy_ios.OpenToyResult
+  public func readBatteryLevel(deviceId: Swift.String, completion: @escaping (opentoy_ios.OpenToyResult) -> Swift.Void)
+  public func writeMotor(deviceId: Swift.String, pwm: [Swift.Int], completion: @escaping (opentoy_ios.OpenToyResult) -> Swift.Void)
   @objc deinit
+}
+extension opentoy_ios.OpenToyIOS : CoreBluetooth.CBCentralManagerDelegate {
+  @objc dynamic public func centralManagerDidUpdateState(_ central: CoreBluetooth.CBCentralManager)
+  @objc dynamic public func centralManager(_ central: CoreBluetooth.CBCentralManager, didDiscover peripheral: CoreBluetooth.CBPeripheral, advertisementData: [Swift.String : Any], rssi RSSI: Foundation.NSNumber)
+  @objc dynamic public func centralManager(_ central: CoreBluetooth.CBCentralManager, didConnect peripheral: CoreBluetooth.CBPeripheral)
+  @objc dynamic public func centralManager(_ central: CoreBluetooth.CBCentralManager, didDisconnectPeripheral peripheral: CoreBluetooth.CBPeripheral, error: (any Swift.Error)?)
+  @objc dynamic public func centralManager(_ central: CoreBluetooth.CBCentralManager, didFailToConnect peripheral: CoreBluetooth.CBPeripheral, error: (any Swift.Error)?)
+}
+extension opentoy_ios.OpenToyIOS : CoreBluetooth.CBPeripheralDelegate {
+  @objc dynamic public func peripheral(_ peripheral: CoreBluetooth.CBPeripheral, didDiscoverServices error: (any Swift.Error)?)
+  @objc dynamic public func peripheral(_ peripheral: CoreBluetooth.CBPeripheral, didDiscoverCharacteristicsFor service: CoreBluetooth.CBService, error: (any Swift.Error)?)
+  @objc dynamic public func peripheral(_ peripheral: CoreBluetooth.CBPeripheral, didUpdateValueFor characteristic: CoreBluetooth.CBCharacteristic, error: (any Swift.Error)?)
+  @objc dynamic public func peripheral(_ peripheral: CoreBluetooth.CBPeripheral, didWriteValueFor characteristic: CoreBluetooth.CBCharacteristic, error: (any Swift.Error)?)
 }
