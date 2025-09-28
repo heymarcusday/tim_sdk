@@ -1,0 +1,17 @@
+// swift-interface-format-version: 1.0
+// swift-compiler-version: Apple Swift version 6.1.2 (swiftlang-6.1.2.1.2 clang-1700.0.13.5)
+// swift-module-flags: -target arm64-apple-ios13.0 -enable-objc-interop -enable-library-evolution -swift-version 6 -O -module-name opentoy_ios -package-name opentoy_ios
+// swift-module-flags-ignorable:  -interface-compiler-version 6.1.2
+import Foundation
+import Swift
+import UIKit
+import _Concurrency
+import _StringProcessing
+import _SwiftConcurrencyShims
+@_hasMissingDesignatedInitializers @_Concurrency.MainActor public class OpenToyIOS : @unchecked Swift.Sendable {
+  @_Concurrency.MainActor public static let shared: opentoy_ios.OpenToyIOS
+  @_Concurrency.MainActor public func getVersion() -> Swift.String
+  @_Concurrency.MainActor public func getDeviceInfo() -> [Swift.String : Any]
+  @_Concurrency.MainActor public func performOperation(_ operation: Swift.String) -> Swift.String
+  @objc deinit
+}

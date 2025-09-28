@@ -14,4 +14,22 @@ class MethodChannelTimSdk extends TimSdkPlatform {
     final version = await methodChannel.invokeMethod<String>('getPlatformVersion');
     return version;
   }
+
+  @override
+  Future<String?> getOpenToyVersion() async {
+    final version = await methodChannel.invokeMethod<String>('getOpenToyVersion');
+    return version;
+  }
+
+  @override
+  Future<Map<String, dynamic>?> getOpenToyDeviceInfo() async {
+    final deviceInfo = await methodChannel.invokeMethod<Map<Object?, Object?>>('getOpenToyDeviceInfo');
+    return deviceInfo?.cast<String, dynamic>();
+  }
+
+  @override
+  Future<String?> performOpenToyOperation(String operation) async {
+    final result = await methodChannel.invokeMethod<String>('performOpenToyOperation', {'operation': operation});
+    return result;
+  }
 }

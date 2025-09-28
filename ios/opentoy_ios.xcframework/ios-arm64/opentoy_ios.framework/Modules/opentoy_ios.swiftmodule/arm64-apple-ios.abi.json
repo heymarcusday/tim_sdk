@@ -1,0 +1,201 @@
+{
+  "ABIRoot": {
+    "kind": "Root",
+    "name": "opentoy_ios",
+    "printedName": "opentoy_ios",
+    "children": [
+      {
+        "kind": "Import",
+        "name": "Foundation",
+        "printedName": "Foundation",
+        "declKind": "Import",
+        "moduleName": "opentoy_ios"
+      },
+      {
+        "kind": "Import",
+        "name": "UIKit",
+        "printedName": "UIKit",
+        "declKind": "Import",
+        "moduleName": "opentoy_ios"
+      },
+      {
+        "kind": "TypeDecl",
+        "name": "OpenToyIOS",
+        "printedName": "OpenToyIOS",
+        "children": [
+          {
+            "kind": "Var",
+            "name": "shared",
+            "printedName": "shared",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "OpenToyIOS",
+                "printedName": "opentoy_ios.OpenToyIOS",
+                "usr": "s:11opentoy_ios10OpenToyIOSC"
+              }
+            ],
+            "declKind": "Var",
+            "usr": "s:11opentoy_ios10OpenToyIOSC6sharedACvpZ",
+            "mangledName": "$s11opentoy_ios10OpenToyIOSC6sharedACvpZ",
+            "moduleName": "opentoy_ios",
+            "static": true,
+            "declAttributes": [
+              "HasInitialValue",
+              "Final",
+              "HasStorage",
+              "Custom",
+              "AccessControl"
+            ],
+            "isLet": true,
+            "hasStorage": true,
+            "accessors": [
+              {
+                "kind": "Accessor",
+                "name": "Get",
+                "printedName": "Get()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "OpenToyIOS",
+                    "printedName": "opentoy_ios.OpenToyIOS",
+                    "usr": "s:11opentoy_ios10OpenToyIOSC"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:11opentoy_ios10OpenToyIOSC6sharedACvgZ",
+                "mangledName": "$s11opentoy_ios10OpenToyIOSC6sharedACvgZ",
+                "moduleName": "opentoy_ios",
+                "static": true,
+                "implicit": true,
+                "declAttributes": [
+                  "Final"
+                ],
+                "accessorKind": "get"
+              }
+            ]
+          },
+          {
+            "kind": "Function",
+            "name": "getVersion",
+            "printedName": "getVersion()",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "String",
+                "printedName": "Swift.String",
+                "usr": "s:SS"
+              }
+            ],
+            "declKind": "Func",
+            "usr": "s:11opentoy_ios10OpenToyIOSC10getVersionSSyF",
+            "mangledName": "$s11opentoy_ios10OpenToyIOSC10getVersionSSyF",
+            "moduleName": "opentoy_ios",
+            "declAttributes": [
+              "Custom",
+              "AccessControl"
+            ],
+            "funcSelfKind": "NonMutating"
+          },
+          {
+            "kind": "Function",
+            "name": "getDeviceInfo",
+            "printedName": "getDeviceInfo()",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Dictionary",
+                "printedName": "[Swift.String : Any]",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "String",
+                    "printedName": "Swift.String",
+                    "usr": "s:SS"
+                  },
+                  {
+                    "kind": "TypeNominal",
+                    "name": "ProtocolComposition",
+                    "printedName": "Any"
+                  }
+                ],
+                "usr": "s:SD"
+              }
+            ],
+            "declKind": "Func",
+            "usr": "s:11opentoy_ios10OpenToyIOSC13getDeviceInfoSDySSypGyF",
+            "mangledName": "$s11opentoy_ios10OpenToyIOSC13getDeviceInfoSDySSypGyF",
+            "moduleName": "opentoy_ios",
+            "declAttributes": [
+              "Custom",
+              "AccessControl"
+            ],
+            "funcSelfKind": "NonMutating"
+          },
+          {
+            "kind": "Function",
+            "name": "performOperation",
+            "printedName": "performOperation(_:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "String",
+                "printedName": "Swift.String",
+                "usr": "s:SS"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "String",
+                "printedName": "Swift.String",
+                "usr": "s:SS"
+              }
+            ],
+            "declKind": "Func",
+            "usr": "s:11opentoy_ios10OpenToyIOSC16performOperationyS2SF",
+            "mangledName": "$s11opentoy_ios10OpenToyIOSC16performOperationyS2SF",
+            "moduleName": "opentoy_ios",
+            "declAttributes": [
+              "Custom",
+              "AccessControl"
+            ],
+            "funcSelfKind": "NonMutating"
+          }
+        ],
+        "declKind": "Class",
+        "usr": "s:11opentoy_ios10OpenToyIOSC",
+        "mangledName": "$s11opentoy_ios10OpenToyIOSC",
+        "moduleName": "opentoy_ios",
+        "declAttributes": [
+          "AccessControl",
+          "Custom"
+        ],
+        "hasMissingDesignatedInitializers": true,
+        "conformances": [
+          {
+            "kind": "Conformance",
+            "name": "Copyable",
+            "printedName": "Copyable",
+            "usr": "s:s8CopyableP",
+            "mangledName": "$ss8CopyableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Escapable",
+            "printedName": "Escapable",
+            "usr": "s:s9EscapableP",
+            "mangledName": "$ss9EscapableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Sendable",
+            "printedName": "Sendable",
+            "usr": "s:s8SendableP",
+            "mangledName": "$ss8SendableP"
+          }
+        ]
+      }
+    ],
+    "json_format_version": 8
+  },
+  "ConstValues": []
+}

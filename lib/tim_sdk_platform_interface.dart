@@ -26,4 +26,16 @@ abstract class TimSdkPlatform extends PlatformInterface {
   Future<String?> getPlatformVersion() {
     throw UnimplementedError('platformVersion() has not been implemented.');
   }
+
+  Future<String?> getOpenToyVersion() {
+    throw UnimplementedError('getOpenToyVersion() has not been implemented.');
+  }
+
+  Future<Map<String, dynamic>?> getOpenToyDeviceInfo() {
+    throw UnimplementedError('getOpenToyDeviceInfo() has not been implemented.');
+  }
+
+  Future<String?> performOpenToyOperation(String operation) {
+    throw UnimplementedError('performOpenToyOperation() has not been implemented.');
+  }
 }
