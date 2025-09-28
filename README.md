@@ -26,6 +26,12 @@ flutter pub get
 
 ### iOS 配置
 
+#### 1. 设置部署目标
+在 `ios/Runner.xcodeproj` 中设置：
+- **iOS Deployment Target**: 12.0
+- **Swift Language Version**: Swift 5
+
+#### 2. 添加权限
 在你的 `ios/Runner/Info.plist` 文件中添加以下权限：
 
 ```xml
@@ -37,6 +43,19 @@ flutter pub get
 
 ### Android 配置
 
+#### 1. 设置编译版本
+在 `android/app/build.gradle` 中设置：
+```gradle
+android {
+    compileSdkVersion 34
+    defaultConfig {
+        minSdkVersion 21
+        targetSdkVersion 34
+    }
+}
+```
+
+#### 2. 添加权限
 在你的 `android/app/src/main/AndroidManifest.xml` 文件中添加以下权限：
 
 ```xml
