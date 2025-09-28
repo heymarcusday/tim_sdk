@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/services.dart';
 
@@ -8,6 +9,10 @@ class MethodChannelTimSdk extends TimSdkPlatform {
   /// The method channel used to interact with the native platform.
   @visibleForTesting
   final methodChannel = const MethodChannel('tim_sdk');
+
+  /// The event channel used to receive events from the native platform.
+  @visibleForTesting
+  final eventChannel = const EventChannel('tim_sdk/events');
 
   @override
   Future<String?> getPlatformVersion() async {
@@ -56,5 +61,22 @@ class MethodChannelTimSdk extends TimSdkPlatform {
   Future<bool?> writeMotor(String deviceId, List<int> pwm) async {
     final result = await methodChannel.invokeMethod<bool>('writeMotor', {'deviceId': deviceId, 'pwm': pwm});
     return result;
+  }
+
+  @override
+  Stream<Map<String, dynamic>>? get events {
+    return eventChannel.receiveBroadcastStream().map((event) {
+      if (event is Map) {
+        return Map<String, dynamic>.from(
+          event.map((key, value) {
+            if (value is Map) {
+              return MapEntry(key as String, Map<String, dynamic>.from(value.cast<String, dynamic>()));
+            }
+            return MapEntry(key as String, value);
+          }),
+        );
+      }
+      return <String, dynamic>{};
+    });
   }
 }

@@ -1,253 +1,171 @@
 import 'package:flutter/material.dart';
-import 'dart:async';
-
-import 'package:flutter/services.dart';
 import 'package:tim_sdk/tim_sdk.dart';
+import 'home_page.dart';
+import 'battery_examples.dart';
+import 'battery_monitor_example.dart';
+import 'device_detail_page.dart';
 
 void main() {
   runApp(const MyApp());
 }
 
-class MyApp extends StatefulWidget {
+class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
   @override
-  State<MyApp> createState() => _MyAppState();
+  Widget build(BuildContext context) {
+    final colorScheme = ColorScheme.fromSeed(seedColor: const Color(0xFF4E5CF5), brightness: Brightness.dark);
+
+    final theme = ThemeData(
+      useMaterial3: true,
+      colorScheme: colorScheme,
+      scaffoldBackgroundColor: colorScheme.surface,
+      appBarTheme: AppBarTheme(
+        backgroundColor: colorScheme.surface,
+        foregroundColor: colorScheme.onSurface,
+        elevation: 0,
+      ),
+      snackBarTheme: SnackBarThemeData(
+        backgroundColor: colorScheme.inverseSurface,
+        contentTextStyle: TextStyle(color: colorScheme.onInverseSurface),
+        behavior: SnackBarBehavior.floating,
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+      ),
+      elevatedButtonTheme: ElevatedButtonThemeData(
+        style: ElevatedButton.styleFrom(
+          padding: const EdgeInsets.symmetric(horizontal: 18, vertical: 12),
+          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
+          textStyle: const TextStyle(fontWeight: FontWeight.w600),
+        ),
+      ),
+      cardTheme: CardThemeData(
+        color: colorScheme.surfaceContainerHighest,
+        elevation: 2,
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
+        margin: const EdgeInsets.symmetric(vertical: 6),
+      ),
+      listTileTheme: ListTileThemeData(textColor: colorScheme.onSurface, iconColor: colorScheme.onSurfaceVariant),
+      textTheme: ThemeData(
+        brightness: Brightness.dark,
+      ).textTheme.apply(bodyColor: colorScheme.onSurface, displayColor: colorScheme.onSurface),
+    );
+
+    return MaterialApp(title: 'TIM SDK - OpenToy 蓝牙控制演示', theme: theme, home: const FactoryHomePage());
+  }
 }
 
-class _MyAppState extends State<MyApp> {
-  String _platformVersion = 'Unknown';
-  String _openToyVersion = 'Unknown';
-  Map<String, dynamic>? _deviceInfo;
-  String _bluetoothStatus = 'Not initialized';
-  String _selectedDeviceId = '';
-  int? _batteryLevel;
-  final _timSdkPlugin = TimSdk();
-
-  @override
-  void initState() {
-    super.initState();
-    initPlatformState();
-  }
-
-  // Platform messages are asynchronous, so we initialize in an async method.
-  Future<void> initPlatformState() async {
-    try {
-      final platformVersion = await _timSdkPlugin.getPlatformVersion() ?? 'Unknown platform version';
-
-      if (!mounted) return;
-
-      setState(() {
-        _platformVersion = platformVersion;
-        _openToyVersion = 'OpenToy iOS Framework v1.0.0'; // 硬编码版本信息
-        _deviceInfo = {'platform': 'iOS', 'systemVersion': 'Unknown', 'model': 'Unknown'};
-      });
-    } on PlatformException catch (e) {
-      if (!mounted) return;
-      setState(() {
-        _platformVersion = 'Failed to get platform version: ${e.message}';
-        _openToyVersion = 'OpenToy iOS Framework v1.0.0';
-      });
-    }
-  }
-
-  // 蓝牙功能方法
-  Future<void> _initializeBluetooth() async {
-    try {
-      final result = await _timSdkPlugin.initializeBluetooth();
-      if (!mounted) return;
-      setState(() {
-        _bluetoothStatus = result == true ? 'Initialized' : 'Failed to initialize';
-      });
-    } on PlatformException catch (e) {
-      if (!mounted) return;
-      setState(() {
-        _bluetoothStatus = 'Error: ${e.message}';
-      });
-    }
-  }
-
-  Future<void> _startScan() async {
-    try {
-      final result = await _timSdkPlugin.startScan();
-      if (!mounted) return;
-      setState(() {
-        _bluetoothStatus = result == true ? 'Scanning...' : 'Failed to start scan';
-      });
-    } on PlatformException catch (e) {
-      if (!mounted) return;
-      setState(() {
-        _bluetoothStatus = 'Error: ${e.message}';
-      });
-    }
-  }
-
-  Future<void> _stopScan() async {
-    try {
-      final result = await _timSdkPlugin.stopScan();
-      if (!mounted) return;
-      setState(() {
-        _bluetoothStatus = result == true ? 'Scan stopped' : 'Failed to stop scan';
-      });
-    } on PlatformException catch (e) {
-      if (!mounted) return;
-      setState(() {
-        _bluetoothStatus = 'Error: ${e.message}';
-      });
-    }
-  }
-
-  Future<void> _disconnectFromDevice() async {
-    if (_selectedDeviceId.isEmpty) return;
-
-    try {
-      final result = await _timSdkPlugin.disconnectFromDevice(_selectedDeviceId);
-      if (!mounted) return;
-      setState(() {
-        _selectedDeviceId = '';
-        _bluetoothStatus = result == true ? 'Disconnected' : 'Failed to disconnect';
-      });
-    } on PlatformException catch (e) {
-      if (!mounted) return;
-      setState(() {
-        _bluetoothStatus = 'Error: ${e.message}';
-      });
-    }
-  }
-
-  Future<void> _readBatteryLevel() async {
-    if (_selectedDeviceId.isEmpty) return;
-
-    try {
-      final result = await _timSdkPlugin.readBatteryLevel(_selectedDeviceId);
-      if (!mounted) return;
-      setState(() {
-        _batteryLevel = result;
-      });
-    } on PlatformException {
-      if (!mounted) return;
-      setState(() {
-        _batteryLevel = -1; // 表示错误
-      });
-    }
-  }
-
-  Future<void> _writeMotor(List<int> pwm) async {
-    if (_selectedDeviceId.isEmpty) return;
-
-    try {
-      await _timSdkPlugin.writeMotor(_selectedDeviceId, pwm);
-      if (!mounted) return;
-      // 电机控制结果可以通过其他方式显示，比如状态栏或弹窗
-      // 这里可以添加成功提示或其他UI反馈
-    } on PlatformException {
-      // 这里可以添加错误提示或其他UI反馈
-    }
-  }
+class FactoryHomePage extends StatelessWidget {
+  const FactoryHomePage({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      home: Scaffold(
-        appBar: AppBar(title: const Text('TIM SDK Bluetooth Demo'), backgroundColor: Colors.blue),
-        body: SingleChildScrollView(
+    return Scaffold(
+      appBar: AppBar(title: const Text('TIM SDK 演示'), centerTitle: true),
+      body: Padding(
+        padding: const EdgeInsets.all(16.0),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: [
+            const Text(
+              'TIM SDK - OpenToy 蓝牙控制演示',
+              style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+              textAlign: TextAlign.center,
+            ),
+            const SizedBox(height: 8),
+            const Text(
+              '选择要测试的功能模块',
+              style: TextStyle(fontSize: 16, color: Colors.grey),
+              textAlign: TextAlign.center,
+            ),
+            const SizedBox(height: 32),
+            Expanded(
+              child: GridView.count(
+                crossAxisCount: 2,
+                crossAxisSpacing: 16,
+                mainAxisSpacing: 16,
+                children: [
+                  _buildFeatureCard(
+                    context,
+                    title: '蓝牙设备管理',
+                    description: '扫描、连接、断开设备',
+                    icon: Icons.bluetooth,
+                    color: Colors.blue,
+                    onTap: () => Navigator.push(context, MaterialPageRoute(builder: (context) => const HomePage())),
+                  ),
+                  _buildFeatureCard(
+                    context,
+                    title: '电池电量示例',
+                    description: '直接读取 vs 事件监听',
+                    icon: Icons.battery_std,
+                    color: Colors.orange,
+                    onTap: () =>
+                        Navigator.push(context, MaterialPageRoute(builder: (context) => const BatteryExamples())),
+                  ),
+                  _buildFeatureCard(
+                    context,
+                    title: '电池监控示例',
+                    description: '定期监控电池电量变化',
+                    icon: Icons.monitor_heart,
+                    color: Colors.purple,
+                    onTap: () =>
+                        Navigator.push(context, MaterialPageRoute(builder: (context) => const BatteryMonitorExample())),
+                  ),
+                  _buildFeatureCard(
+                    context,
+                    title: '设备详情控制',
+                    description: '设备信息、电池、电机控制',
+                    icon: Icons.settings,
+                    color: Colors.green,
+                    onTap: () => Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => const DeviceDetailPage(
+                          deviceId: 'demo_device',
+                          deviceName: '演示设备',
+                          initialIsConnected: false,
+                        ),
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+
+  Widget _buildFeatureCard(
+    BuildContext context, {
+    required String title,
+    required String description,
+    required IconData icon,
+    required Color color,
+    required VoidCallback onTap,
+  }) {
+    return Card(
+      elevation: 4,
+      child: InkWell(
+        onTap: onTap,
+        borderRadius: BorderRadius.circular(16),
+        child: Padding(
           padding: const EdgeInsets.all(16.0),
           child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
+            mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Card(
-                child: Padding(
-                  padding: const EdgeInsets.all(16.0),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      const Text('Platform Information', style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
-                      const SizedBox(height: 8),
-                      Text('Platform: $_platformVersion'),
-                      Text('OpenToy Version: $_openToyVersion'),
-                    ],
-                  ),
-                ),
+              Icon(icon, size: 48, color: color),
+              const SizedBox(height: 12),
+              Text(
+                title,
+                style: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+                textAlign: TextAlign.center,
               ),
-              const SizedBox(height: 16),
-              Card(
-                child: Padding(
-                  padding: const EdgeInsets.all(16.0),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      const Text(
-                        'OpenToy iOS Framework Status',
-                        style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
-                      ),
-                      const SizedBox(height: 8),
-                      Text('Framework Version: $_openToyVersion'),
-                      if (_deviceInfo != null) ...[
-                        Text('Platform: ${_deviceInfo!['platform']}'),
-                        Text('System Version: ${_deviceInfo!['systemVersion']}'),
-                        Text('Model: ${_deviceInfo!['model']}'),
-                      ] else
-                        const Text('Loading framework info...'),
-                    ],
-                  ),
-                ),
-              ),
-              const SizedBox(height: 16),
-
-              // 蓝牙状态
-              Card(
-                child: Padding(
-                  padding: const EdgeInsets.all(16.0),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      const Text('Bluetooth Status', style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
-                      const SizedBox(height: 8),
-                      Text('Status: $_bluetoothStatus'),
-                      if (_selectedDeviceId.isNotEmpty) Text('Connected Device: $_selectedDeviceId'),
-                      if (_batteryLevel != null)
-                        Text('Battery Level: ${_batteryLevel == -1 ? "Error" : "$_batteryLevel%"}'),
-                    ],
-                  ),
-                ),
-              ),
-
-              const SizedBox(height: 16),
-
-              // 蓝牙控制
-              Card(
-                child: Padding(
-                  padding: const EdgeInsets.all(16.0),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      const Text('Bluetooth Controls', style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
-                      const SizedBox(height: 8),
-                      Wrap(
-                        spacing: 8,
-                        runSpacing: 8,
-                        children: [
-                          ElevatedButton(onPressed: _initializeBluetooth, child: const Text('Initialize')),
-                          ElevatedButton(onPressed: _startScan, child: const Text('Start Scan')),
-                          ElevatedButton(onPressed: _stopScan, child: const Text('Stop Scan')),
-                        ],
-                      ),
-                      if (_selectedDeviceId.isNotEmpty) ...[
-                        const SizedBox(height: 8),
-                        Wrap(
-                          spacing: 8,
-                          runSpacing: 8,
-                          children: [
-                            ElevatedButton(onPressed: _readBatteryLevel, child: const Text('Read Battery')),
-                            ElevatedButton(onPressed: _disconnectFromDevice, child: const Text('Disconnect')),
-                            ElevatedButton(onPressed: () => _writeMotor([50]), child: const Text('Motor 50%')),
-                            ElevatedButton(onPressed: () => _writeMotor([0]), child: const Text('Motor Stop')),
-                          ],
-                        ),
-                      ],
-                    ],
-                  ),
-                ),
+              const SizedBox(height: 8),
+              Text(
+                description,
+                style: TextStyle(fontSize: 12, color: Colors.grey[600]),
+                textAlign: TextAlign.center,
               ),
             ],
           ),

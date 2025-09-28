@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'package:plugin_platform_interface/plugin_platform_interface.dart';
 
 import 'tim_sdk_method_channel.dart';
@@ -54,5 +55,10 @@ abstract class TimSdkPlatform extends PlatformInterface {
 
   Future<bool?> writeMotor(String deviceId, List<int> pwm) {
     throw UnimplementedError('writeMotor() has not been implemented.');
+  }
+
+  // 事件流
+  Stream<Map<String, dynamic>>? get events {
+    throw UnimplementedError('events has not been implemented.');
   }
 }

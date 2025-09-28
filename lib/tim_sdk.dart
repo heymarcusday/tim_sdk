@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'tim_sdk_platform_interface.dart';
 
 class TimSdk {
@@ -32,5 +33,10 @@ class TimSdk {
 
   Future<bool?> writeMotor(String deviceId, List<int> pwm) {
     return TimSdkPlatform.instance.writeMotor(deviceId, pwm);
+  }
+
+  // 事件流
+  Stream<Map<String, dynamic>>? get events {
+    return TimSdkPlatform.instance.events;
   }
 }
