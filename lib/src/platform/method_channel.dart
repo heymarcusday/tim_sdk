@@ -2,17 +2,17 @@ import 'dart:async';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/services.dart';
 
-import 'tim_sdk_platform_interface.dart';
+import 'platform_interface.dart';
 
-/// An implementation of [TimSdkPlatform] that uses method channels.
-class MethodChannelTimSdk extends TimSdkPlatform {
+/// An implementation of [TimPlatform] that uses method channels.
+class MethodChannelTimSdk extends TimPlatform {
   /// The method channel used to interact with the native platform.
   @visibleForTesting
-  final methodChannel = const MethodChannel('tim_sdk');
+  final methodChannel = const MethodChannel('tim');
 
   /// The event channel used to receive events from the native platform.
   @visibleForTesting
-  final eventChannel = const EventChannel('tim_sdk/events');
+  final eventChannel = const EventChannel('tim/events');
 
   @override
   Future<String?> getPlatformVersion() async {
@@ -22,7 +22,7 @@ class MethodChannelTimSdk extends TimSdkPlatform {
 
   // 蓝牙相关方法
   @override
-  Future<bool?> initializeBluetooth() async {
+  Future<bool?> initialize() async {
     final result = await methodChannel.invokeMethod<bool>('initializeBluetooth');
     return result;
   }
@@ -40,13 +40,13 @@ class MethodChannelTimSdk extends TimSdkPlatform {
   }
 
   @override
-  Future<bool?> connectToDevice(String deviceId) async {
+  Future<bool?> connectDevice(String deviceId) async {
     final result = await methodChannel.invokeMethod<bool>('connectToDevice', {'deviceId': deviceId});
     return result;
   }
 
   @override
-  Future<bool?> disconnectFromDevice(String deviceId) async {
+  Future<bool?> disconnectDevice(String deviceId) async {
     final result = await methodChannel.invokeMethod<bool>('disconnectFromDevice', {'deviceId': deviceId});
     return result;
   }

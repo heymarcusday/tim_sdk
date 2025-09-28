@@ -1,4 +1,4 @@
-package com.mobius.tim_sdk
+package com.mobius.tim
 
 import io.flutter.embedding.engine.plugins.FlutterPlugin
 import io.flutter.plugin.common.MethodCall
@@ -17,7 +17,7 @@ class TimSdkPlugin :
     private lateinit var channel: MethodChannel
 
     override fun onAttachedToEngine(flutterPluginBinding: FlutterPlugin.FlutterPluginBinding) {
-        channel = MethodChannel(flutterPluginBinding.binaryMessenger, "tim_sdk")
+        channel = MethodChannel(flutterPluginBinding.binaryMessenger, "tim")
         channel.setMethodCallHandler(this)
     }
 

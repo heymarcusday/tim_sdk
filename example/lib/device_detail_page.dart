@@ -1,6 +1,6 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
-import 'package:tim_sdk/tim_sdk.dart';
+import 'package:tim/tim.dart';
 
 class DeviceDetailPage extends StatefulWidget {
   const DeviceDetailPage({
@@ -19,7 +19,7 @@ class DeviceDetailPage extends StatefulWidget {
 }
 
 class _DeviceDetailPageState extends State<DeviceDetailPage> {
-  final TimSdk _timSdk = TimSdk();
+  final Tim _timSdk = Tim.instance;
   late bool _isConnected;
   bool _isConnecting = false;
   bool _isDisconnecting = false;
@@ -27,11 +27,54 @@ class _DeviceDetailPageState extends State<DeviceDetailPage> {
   int? _currentBatteryLevel;
   String _batteryStatus = '';
   int _currentPwm = 0; // 单电机模式
+  StreamSubscription<TimDevice>? _deviceConnectionSubscription;
+  StreamSubscription<TimDevice>? _deviceDisconnectionSubscription;
+  Timer? _motorControlTimer;
 
   @override
   void initState() {
     super.initState();
     _isConnected = widget.initialIsConnected;
+    _setupDeviceConnectionListener();
+  }
+
+  @override
+  void dispose() {
+    _deviceConnectionSubscription?.cancel();
+    _deviceDisconnectionSubscription?.cancel();
+    _motorControlTimer?.cancel();
+    super.dispose();
+  }
+
+  void _setupDeviceConnectionListener() {
+    // 监听设备连接状态变化
+    _deviceConnectionSubscription = _timSdk.deviceConnected.listen((device) {
+      if (device.deviceId == widget.deviceId) {
+        if (!mounted) return;
+        setState(() {
+          _isConnected = device.isConnected;
+          if (device.isConnected) {
+            _batteryStatus = '设备已连接';
+          } else {
+            _resetState();
+          }
+        });
+      }
+    });
+
+    // 监听设备断开连接事件
+    _deviceDisconnectionSubscription = _timSdk.deviceDisconnected.listen((device) {
+      if (device.deviceId == widget.deviceId) {
+        if (!mounted) return;
+        setState(() {
+          _isConnected = false;
+          _resetState();
+          _batteryStatus = '设备已断开连接';
+        });
+        // 显示断开连接提示
+        _showSnackBar('设备已断开连接');
+      }
+    });
   }
 
   Future<void> _connect() async {
@@ -40,19 +83,34 @@ class _DeviceDetailPageState extends State<DeviceDetailPage> {
     }
     setState(() {
       _isConnecting = true;
+      _batteryStatus = '正在连接设备...';
     });
 
     try {
-      final result = await _timSdk.connectToDevice(widget.deviceId);
+      final result = await _timSdk.connect(widget.deviceId);
       if (!mounted) return;
       setState(() {
-        _isConnected = result == true;
+        _isConnected = result.isConnected;
         _isConnecting = false;
+        if (result.isConnected) {
+          _batteryStatus = '设备连接成功';
+        } else {
+          _batteryStatus = '设备连接失败';
+        }
       });
+
+      if (result.isConnected) {
+        _showSnackBar('设备连接成功');
+        // 连接成功后自动读取电池电量
+        _readBatteryLevel();
+      } else {
+        _showSnackBar('设备连接失败');
+      }
     } catch (e) {
       if (!mounted) return;
       setState(() {
         _isConnecting = false;
+        _batteryStatus = '连接失败: $e';
       });
       _showSnackBar('连接失败: $e');
     }
@@ -64,22 +122,24 @@ class _DeviceDetailPageState extends State<DeviceDetailPage> {
     }
     setState(() {
       _isDisconnecting = true;
+      _batteryStatus = '正在断开设备...';
     });
 
     try {
-      final result = await _timSdk.disconnectFromDevice(widget.deviceId);
+      await _timSdk.disconnect(widget.deviceId);
       if (!mounted) return;
       setState(() {
-        _isConnected = result != true;
+        _isConnected = false;
         _isDisconnecting = false;
-        if (result == true) {
-          _resetState();
-        }
+        _resetState();
+        _batteryStatus = '设备已断开';
       });
+      _showSnackBar('设备已断开');
     } catch (e) {
       if (!mounted) return;
       setState(() {
         _isDisconnecting = false;
+        _batteryStatus = '断开失败: $e';
       });
       _showSnackBar('断开失败: $e');
     }
@@ -128,15 +188,14 @@ class _DeviceDetailPageState extends State<DeviceDetailPage> {
   /// 写入电机控制数据
   Future<void> _writeMotor(int pwm) async {
     if (!_isConnected) {
+      _showSnackBar('设备未连接，无法控制电机');
       return;
     }
 
     debugPrint('发送电机控制数据: PWM=$pwm');
     try {
-      final result = await _timSdk.writeMotor(widget.deviceId, [pwm]);
-      if (result != true) {
-        _showSnackBar('电机控制失败');
-      }
+      await _timSdk.writeMotor(widget.deviceId, [pwm]);
+      debugPrint('电机控制成功: PWM=$pwm');
     } catch (error) {
       debugPrint('电机控制失败: $error');
       _showSnackBar('电机控制失败: $error');
@@ -149,6 +208,15 @@ class _DeviceDetailPageState extends State<DeviceDetailPage> {
       _currentPwm = 0;
     });
     _writeMotor(0);
+    _showSnackBar('电机已停止');
+  }
+
+  /// 防抖的电机控制方法
+  void _writeMotorWithDebounce(int pwm) {
+    _motorControlTimer?.cancel();
+    _motorControlTimer = Timer(const Duration(milliseconds: 100), () {
+      _writeMotor(pwm);
+    });
   }
 
   void _showSnackBar(String message) {
@@ -195,11 +263,11 @@ class _DeviceDetailPageState extends State<DeviceDetailPage> {
                 const SizedBox(height: 8),
                 LinearProgressIndicator(
                   value: _currentBatteryLevel! / 100.0,
-                  backgroundColor: Colors.grey[300],
+                  backgroundColor: Theme.of(context).colorScheme.surfaceContainerHighest,
                   valueColor: AlwaysStoppedAnimation<Color>(_currentBatteryLevel! > 20 ? Colors.green : Colors.red),
                 ),
               ] else ...[
-                const Text('暂无电池电量数据', style: TextStyle(fontSize: 16, color: Colors.grey)),
+                Text('暂无电池电量数据', style: TextStyle(fontSize: 16, color: Theme.of(context).colorScheme.onSurfaceVariant)),
               ],
               if (_batteryStatus.isNotEmpty) ...[
                 const SizedBox(height: 8),
@@ -267,8 +335,8 @@ class _DeviceDetailPageState extends State<DeviceDetailPage> {
                         setState(() {
                           _currentPwm = value.round();
                         });
-                        // 实时发送PWM值
-                        _writeMotor(_currentPwm);
+                        // 使用防抖发送PWM值
+                        _writeMotorWithDebounce(_currentPwm);
                       },
                     ),
                   ),

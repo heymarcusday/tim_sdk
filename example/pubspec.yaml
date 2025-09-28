@@ -1,5 +1,5 @@
-name: tim_sdk_example
-description: "Demonstrates how to use the tim_sdk plugin."
+name: tim_example
+description: "Demonstrates how to use the TIM plugin."
 publish_to: 'none'
 version: 0.0.1
 
@@ -16,7 +16,7 @@ dependencies:
   flutter:
     sdk: flutter
   cupertino_icons: ^1.0.8
-  tim_sdk:
+  tim:
     path: ../
 
 dev_dependencies:

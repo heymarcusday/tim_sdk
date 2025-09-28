@@ -1,4 +1,4 @@
-# tim_sdk
+# TIM
 
 A Flutter plugin that provides Bluetooth Low Energy functionality for connecting to OpenToy devices.
 
@@ -36,7 +36,7 @@ Add the following permissions to your `android/app/src/main/AndroidManifest.xml`
 ## Usage
 
 ```dart
-import 'package:tim_sdk/tim_sdk.dart';
+import 'package:tim/tim.dart';
 
 // Initialize Bluetooth
 await TimSdk.initializeBluetooth();

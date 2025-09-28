@@ -6,7 +6,7 @@
 
 ### update_opentoy_framework.sh
 
-用于更新 `tim_sdk` 中的 `opentoy_ios.xcframework` 依赖。
+用于更新 `tim` 中的 `opentoy_ios.xcframework` 依赖。
 
 #### 使用方法
 
@@ -47,6 +47,6 @@ cd /path/to/opentoy_ios
 
 1. 在 `opentoy_ios` 中修改代码
 2. 运行 `opentoy_ios` 的构建脚本
-3. 运行 `tim_sdk` 的更新脚本
-4. 测试 `tim_sdk` 的功能
+3. 运行 `tim` 的更新脚本
+4. 测试 `tim` 的功能
 5. 发布新版本

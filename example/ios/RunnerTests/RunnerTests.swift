@@ -3,7 +3,7 @@ import UIKit
 import XCTest
 
 
-@testable import tim_sdk
+@testable import tim
 
 // This demonstrates a simple unit test of the Swift portion of this plugin's implementation.
 //

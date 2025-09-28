@@ -1,25 +1,25 @@
 import 'dart:async';
 import 'package:plugin_platform_interface/plugin_platform_interface.dart';
 
-import 'tim_sdk_method_channel.dart';
+import 'method_channel.dart';
 
-abstract class TimSdkPlatform extends PlatformInterface {
+abstract class TimPlatform extends PlatformInterface {
   /// Constructs a TimSdkPlatform.
-  TimSdkPlatform() : super(token: _token);
+  TimPlatform() : super(token: _token);
 
   static final Object _token = Object();
 
-  static TimSdkPlatform _instance = MethodChannelTimSdk();
+  static TimPlatform _instance = MethodChannelTimSdk();
 
-  /// The default instance of [TimSdkPlatform] to use.
+  /// The default instance of [TimPlatform] to use.
   ///
   /// Defaults to [MethodChannelTimSdk].
-  static TimSdkPlatform get instance => _instance;
+  static TimPlatform get instance => _instance;
 
   /// Platform-specific implementations should set this with their own
-  /// platform-specific class that extends [TimSdkPlatform] when
+  /// platform-specific class that extends [TimPlatform] when
   /// they register themselves.
-  static set instance(TimSdkPlatform instance) {
+  static set instance(TimPlatform instance) {
     PlatformInterface.verifyToken(instance, _token);
     _instance = instance;
   }
@@ -29,7 +29,7 @@ abstract class TimSdkPlatform extends PlatformInterface {
   }
 
   // 蓝牙相关方法
-  Future<bool?> initializeBluetooth() {
+  Future<bool?> initialize() {
     throw UnimplementedError('initializeBluetooth() has not been implemented.');
   }
 
@@ -41,11 +41,11 @@ abstract class TimSdkPlatform extends PlatformInterface {
     throw UnimplementedError('stopScan() has not been implemented.');
   }
 
-  Future<bool?> connectToDevice(String deviceId) {
+  Future<bool?> connectDevice(String deviceId) {
     throw UnimplementedError('connectToDevice() has not been implemented.');
   }
 
-  Future<bool?> disconnectFromDevice(String deviceId) {
+  Future<bool?> disconnectDevice(String deviceId) {
     throw UnimplementedError('disconnectFromDevice() has not been implemented.');
   }
 

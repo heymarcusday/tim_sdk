@@ -1,16 +1,135 @@
-# tim_sdk_example
+# TIM SDK 示例应用
 
-Demonstrates how to use the tim_sdk plugin.
+这是一个展示如何使用 TIM SDK 的完整示例应用。
 
-## Getting Started
+## 功能特性
 
-This project is a starting point for a Flutter application.
+### 主页面 (HomePage)
+- **蓝牙管理**: 初始化、开始扫描、停止扫描
+- **设备发现**: 实时显示发现的蓝牙设备
+- **设备信息**: 显示设备名称、ID、RSSI信号强度、电池电量
+- **状态指示**: 清晰的状态指示和进度反馈
 
-A few resources to get you started if this is your first Flutter project:
+### 设备详情页面 (DeviceDetailPage)
+- **设备连接**: 连接和断开设备
+- **电池监控**: 读取和显示设备电池电量
+- **电机控制**: 
+  - 实时PWM滑块控制（0-100%）
+  - 预设控制按钮（50%、75%、100%）
+  - 停止按钮
+  - 防抖控制，避免频繁发送指令
+- **状态监听**: 实时监听设备连接状态变化
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+## 技术特点
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+### 状态管理
+- 完善的状态管理，避免重复操作
+- 清晰的加载状态指示
+- 错误处理和用户反馈
+
+### 用户体验
+- Material Design 3 设计风格
+- 响应式布局
+- 直观的操作界面
+- 实时状态更新
+
+### 性能优化
+- 防抖控制减少不必要的网络请求
+- 事件监听器正确管理生命周期
+- 内存泄漏防护
+
+## 使用方法
+
+### 1. 运行应用
+```bash
+cd tim/example
+flutter pub get
+flutter run
+```
+
+### 2. 基本操作流程
+1. **切换主题**: 点击AppBar右侧的太阳/月亮图标切换深色/浅色主题
+2. **初始化蓝牙**: 点击"初始化蓝牙"按钮
+3. **扫描设备**: 点击"开始扫描"按钮发现附近的设备
+4. **查看设备**: 在设备列表中查看发现的设备信息
+5. **连接设备**: 点击设备进入详情页面，点击"连接"按钮
+6. **控制设备**: 
+   - 使用滑块实时控制电机PWM值
+   - 使用预设按钮快速设置常用值
+   - 点击"停止"按钮停止电机
+7. **监控电池**: 点击"读取电池电量"按钮查看设备电量
+
+### 3. 设备信息说明
+- **设备名称**: 蓝牙设备的显示名称
+- **设备ID**: 设备的唯一标识符
+- **RSSI**: 信号强度，数值越大信号越强
+- **电池电量**: 设备当前电池电量百分比
+
+## 代码结构
+
+```
+lib/
+├── main.dart              # 应用入口
+├── home_page.dart         # 主页面
+└── device_detail_page.dart # 设备详情页面
+```
+
+### 主要类说明
+
+#### HomePage
+- `_timSdk`: TIM SDK 实例
+- `_discoveredDevices`: 发现的设备列表
+- `_setupEventListeners()`: 设置设备发现事件监听
+- `_startScan()` / `_stopScan()`: 扫描控制
+- `_buildDiscoveredDevices()`: 构建设备列表UI
+
+#### DeviceDetailPage
+- `_isConnected`: 设备连接状态
+- `_currentPwm`: 当前PWM值
+- `_currentBatteryLevel`: 当前电池电量
+- `_writeMotorWithDebounce()`: 防抖电机控制
+- `_setupDeviceConnectionListener()`: 设备连接状态监听
+
+## 注意事项
+
+1. **权限要求**: 应用需要蓝牙权限才能正常工作
+2. **设备兼容性**: 确保目标设备支持相应的蓝牙服务
+3. **连接稳定性**: 保持设备在蓝牙范围内以确保连接稳定
+4. **电池监控**: 某些设备可能不支持电池电量读取
+
+## 故障排除
+
+### 常见问题
+
+1. **蓝牙初始化失败**
+   - 检查设备蓝牙是否开启
+   - 确认应用有蓝牙权限
+
+2. **设备扫描不到**
+   - 确保目标设备处于可发现模式
+   - 检查设备是否在蓝牙范围内
+
+3. **设备连接失败**
+   - 确认设备未被其他应用占用
+   - 尝试重新扫描设备
+
+4. **电机控制无响应**
+   - 确认设备已成功连接
+   - 检查设备是否支持电机控制服务
+
+## 扩展功能
+
+可以基于此示例添加更多功能：
+
+- 多电机控制
+- 设备固件更新
+- 数据记录和分析
+- 自定义控制界面
+- 设备配置管理
+
+## 技术支持
+
+如有问题，请参考：
+- TIM SDK 文档
+- Flutter 蓝牙开发指南
+- 设备厂商文档

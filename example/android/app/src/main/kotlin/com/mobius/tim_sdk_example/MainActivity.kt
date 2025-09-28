@@ -1,4 +1,4 @@
-package com.mobius.tim_sdk_example
+package com.mobius.tim_example
 
 import io.flutter.embedding.android.FlutterActivity
 

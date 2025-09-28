@@ -1,9 +1,9 @@
 #
 # To learn more about a Podspec see http://guides.cocoapods.org/syntax/podspec.html.
-# Run `pod lib lint tim_sdk.podspec` to validate before publishing.
+# Run `pod lib lint tim.podspec` to validate before publishing.
 #
 Pod::Spec.new do |s|
-  s.name             = 'tim_sdk'
+  s.name             = 'tim'
   s.version          = '0.0.1'
   s.summary          = 'TIM SDK for Flutter.'
   s.description      = <<-DESC
@@ -12,7 +12,7 @@ This plugin requires Bluetooth permissions to be declared in your app's Info.pli
 - NSBluetoothAlwaysUsageDescription
 - NSBluetoothPeripheralUsageDescription
                        DESC
-  s.homepage         = 'https://github.com/heymarcusday/tim_sdk'
+  s.homepage         = 'https://github.com/heymarcusday/tim'
   s.license          = { :file => '../LICENSE' }
   s.author           = { 'Mobius' => 'heymarcusday@gmail.com' }
   s.source           = { :path => '.' }
@@ -31,5 +31,5 @@ This plugin requires Bluetooth permissions to be declared in your app's Info.pli
   # required reason APIs, update the PrivacyInfo.xcprivacy file to describe your
   # plugin's privacy impact, and then uncomment this line. For more information,
   # see https://developer.apple.com/documentation/bundleresources/privacy_manifest_files
-  # s.resource_bundles = {'tim_sdk_privacy' => ['Resources/PrivacyInfo.xcprivacy']}
+  # s.resource_bundles = {'tim_privacy' => ['Resources/PrivacyInfo.xcprivacy']}
 end

@@ -1,129 +1,84 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
-import 'package:tim_sdk/tim_sdk.dart';
+import 'package:tim/tim.dart';
 import 'device_detail_page.dart';
 
 class HomePage extends StatefulWidget {
-  const HomePage({super.key});
+  final VoidCallback? onThemeToggle;
+
+  const HomePage({super.key, this.onThemeToggle});
 
   @override
   State<HomePage> createState() => _HomePageState();
 }
 
 class _HomePageState extends State<HomePage> {
-  final TimSdk _timSdk = TimSdk();
+  final Tim _tim = Tim.instance;
   String _bluetoothStatus = '未知';
   final List<Map<String, dynamic>> _discoveredDevices = [];
-  String? _selectedDeviceId;
   bool _isInitializing = false;
   bool _isInitialized = false;
   bool _isStartingScan = false;
   bool _isStoppingScan = false;
   bool _isScanning = false;
-  StreamSubscription<Map<String, dynamic>>? _eventSubscription;
+  StreamSubscription<TimDevice>? _eventSubscription;
+  StreamSubscription<TimDevice>? _deviceConnectionSubscription;
+  StreamSubscription<TimDevice>? _deviceDisconnectionSubscription;
 
   @override
   void initState() {
     super.initState();
     _initializeBluetooth();
-    _listenToEvents();
+    _setupEventListeners();
   }
 
   @override
   void dispose() {
     _eventSubscription?.cancel();
+    _deviceConnectionSubscription?.cancel();
+    _deviceDisconnectionSubscription?.cancel();
     super.dispose();
   }
 
-  void _listenToEvents() {
-    _eventSubscription = _timSdk.events?.listen((event) {
+  void _setupEventListeners() {
+    // 监听设备发现事件
+    _eventSubscription = _tim.deviceDiscovered.where((e) => e.name == 'YUMETA').listen((device) {
       if (!mounted) return;
+      setState(() {
+        // 避免重复添加设备
+        final deviceId = device.deviceId;
+        if (!_discoveredDevices.any((d) => d['deviceId'] == deviceId)) {
+          _discoveredDevices.add({
+            'deviceId': device.deviceId,
+            'name': device.name,
+            'rssi': device.rssi,
+            'isConnected': device.isConnected,
+            'deviceInfo': device.deviceInfo.toMap(),
+          });
+        }
+      });
+    });
 
-      final eventType = event['type'] as String?;
-      switch (eventType) {
-        case 'deviceDiscovered':
-          final device = event['device'] as Map<String, dynamic>?;
-          if (device != null) {
-            setState(() {
-              // 检查设备是否已存在，避免重复添加
-              final deviceId = device['deviceId'] as String?;
-              if (deviceId != null) {
-                final existingIndex = _discoveredDevices.indexWhere((d) => d['deviceId'] == deviceId);
-                if (existingIndex >= 0) {
-                  _discoveredDevices[existingIndex] = device;
-                } else {
-                  _discoveredDevices.add(device);
-                }
-              }
-            });
-          }
-          break;
+    // 监听设备连接状态变化
+    _deviceConnectionSubscription = _tim.deviceConnected.listen((device) {
+      if (!mounted) return;
+      setState(() {
+        final deviceIndex = _discoveredDevices.indexWhere((d) => d['deviceId'] == device.deviceId);
+        if (deviceIndex != -1) {
+          _discoveredDevices[deviceIndex]['isConnected'] = device.isConnected;
+        }
+      });
+    });
 
-        case 'deviceConnected':
-          final deviceId = event['deviceId'] as String?;
-          final deviceInfo = event['deviceInfo'] as Map<String, dynamic>?;
-          if (deviceId != null) {
-            setState(() {
-              _selectedDeviceId = deviceId;
-              _bluetoothStatus = '设备已连接: $deviceId';
-            });
-            _showSnackBar('设备已连接: $deviceId');
-          }
-          break;
-
-        case 'deviceDisconnected':
-          final deviceId = event['deviceId'] as String?;
-          final error = event['error'] as String?;
-          if (deviceId != null) {
-            setState(() {
-              if (_selectedDeviceId == deviceId) {
-                _selectedDeviceId = null;
-                _bluetoothStatus = '设备已断开: $deviceId';
-              }
-            });
-            _showSnackBar(error != null && error.isNotEmpty ? '设备断开: $error' : '设备已断开: $deviceId');
-          }
-          break;
-
-        case 'deviceConnectionFailed':
-          final deviceId = event['deviceId'] as String?;
-          final error = event['error'] as String?;
-          if (deviceId != null) {
-            _showSnackBar('连接失败: $deviceId - ${error ?? "未知错误"}');
-          }
-          break;
-
-        case 'bluetoothStateChanged':
-          final state = event['state'] as String?;
-          if (state != null) {
-            setState(() {
-              _bluetoothStatus = '蓝牙状态: $state';
-            });
-          }
-          break;
-
-        case 'characteristicValueUpdated':
-          final deviceId = event['deviceId'] as String?;
-          final characteristicId = event['characteristicId'] as String?;
-          final data = event['data'] as List<int>?;
-          debugPrint('特征值更新: $deviceId, $characteristicId, $data');
-          break;
-
-        case 'characteristicReadFailed':
-        case 'characteristicWriteFailed':
-        case 'servicesDiscoveryFailed':
-        case 'characteristicsDiscoveryFailed':
-          final deviceId = event['deviceId'] as String?;
-          final error = event['error'] as String?;
-          debugPrint('蓝牙操作失败: $eventType - $deviceId - $error');
-          break;
-
-        case 'characteristicWriteSuccess':
-          final deviceId = event['deviceId'] as String?;
-          final characteristicId = event['characteristicId'] as String?;
-          debugPrint('特征值写入成功: $deviceId, $characteristicId');
-          break;
-      }
+    // 监听设备断开连接事件
+    _deviceDisconnectionSubscription = _tim.deviceDisconnected.listen((device) {
+      if (!mounted) return;
+      setState(() {
+        final deviceIndex = _discoveredDevices.indexWhere((d) => d['deviceId'] == device.deviceId);
+        if (deviceIndex != -1) {
+          _discoveredDevices[deviceIndex]['isConnected'] = false;
+        }
+      });
     });
   }
 
@@ -137,12 +92,12 @@ class _HomePageState extends State<HomePage> {
     });
 
     try {
-      final result = await _timSdk.initializeBluetooth();
+      await _tim.initialize();
       if (!mounted) return;
       setState(() {
         _isInitializing = false;
-        _isInitialized = result == true;
-        _bluetoothStatus = result == true ? '已初始化' : '初始化失败';
+        _isInitialized = true;
+        _bluetoothStatus = '已初始化';
       });
     } catch (e) {
       if (!mounted) return;
@@ -161,15 +116,15 @@ class _HomePageState extends State<HomePage> {
 
     setState(() {
       _isStartingScan = true;
+      _discoveredDevices.clear();
     });
 
     try {
-      final result = await _timSdk.startScan();
+      await _tim.startScan();
       if (!mounted) return;
       setState(() {
         _isStartingScan = false;
-        _isScanning = result == true;
-        _discoveredDevices.clear();
+        _isScanning = true;
       });
     } catch (e) {
       if (!mounted) return;
@@ -191,11 +146,11 @@ class _HomePageState extends State<HomePage> {
     });
 
     try {
-      final result = await _timSdk.stopScan();
+      await _tim.stopScan();
       if (!mounted) return;
       setState(() {
         _isStoppingScan = false;
-        _isScanning = result != true;
+        _isScanning = false;
       });
     } catch (e) {
       if (!mounted) return;
@@ -206,10 +161,14 @@ class _HomePageState extends State<HomePage> {
     }
   }
 
-  void _openDeviceDetail(BuildContext context, String deviceId) {
+  void _openDeviceDetail(BuildContext context, Map<String, dynamic> device) {
+    final deviceId = device['deviceId'] as String? ?? '';
+    final deviceName = device['name'] as String? ?? 'Unknown Device';
+    final isConnected = device['isConnected'] as bool? ?? false;
+
     Navigator.of(context).push(
       MaterialPageRoute(
-        builder: (_) => DeviceDetailPage(deviceId: deviceId, deviceName: '设备 $deviceId', initialIsConnected: false),
+        builder: (_) => DeviceDetailPage(deviceId: deviceId, deviceName: deviceName, initialIsConnected: isConnected),
       ),
     );
   }
@@ -368,17 +327,53 @@ class _HomePageState extends State<HomePage> {
       final deviceId = device['deviceId'] as String? ?? 'Unknown';
       final deviceName = device['name'] as String? ?? 'Unknown Device';
       final rssi = device['rssi'] as int? ?? 0;
-      final isConnected = _selectedDeviceId == deviceId;
+      final isConnected = device['isConnected'] as bool? ?? false;
+      final deviceInfo = device['deviceInfo'] as Map<String, dynamic>?;
+      final battery = deviceInfo?['battery'] as int?;
 
       return Card(
+        margin: const EdgeInsets.only(bottom: 8),
         child: ListTile(
-          onTap: () => _openDeviceDetail(context, deviceId),
+          onTap: () => _openDeviceDetail(context, device),
+          leading: CircleAvatar(
+            backgroundColor: Theme.of(context).colorScheme.primaryContainer,
+            child: Icon(Icons.bluetooth, color: Theme.of(context).colorScheme.onPrimaryContainer),
+          ),
           title: Text(deviceName, style: Theme.of(context).textTheme.titleMedium),
-          subtitle: Text(
-            'ID: $deviceId\nRSSI: $rssi',
-            style: Theme.of(
-              context,
-            ).textTheme.bodySmall?.copyWith(color: Theme.of(context).colorScheme.onSurfaceVariant),
+          subtitle: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                'ID: $deviceId',
+                style: Theme.of(
+                  context,
+                ).textTheme.bodySmall?.copyWith(color: Theme.of(context).colorScheme.onSurfaceVariant),
+              ),
+              Row(
+                children: [
+                  Icon(Icons.signal_cellular_alt, size: 16, color: Theme.of(context).colorScheme.onSurfaceVariant),
+                  const SizedBox(width: 4),
+                  Text(
+                    'RSSI: $rssi dBm',
+                    style: Theme.of(
+                      context,
+                    ).textTheme.bodySmall?.copyWith(color: Theme.of(context).colorScheme.onSurfaceVariant),
+                  ),
+                  if (battery != null) ...[
+                    const SizedBox(width: 16),
+                    Icon(Icons.battery_std, size: 16, color: battery > 20 ? Colors.green : Colors.red),
+                    const SizedBox(width: 4),
+                    Text(
+                      '$battery%',
+                      style: Theme.of(context).textTheme.bodySmall?.copyWith(
+                        color: battery > 20 ? Colors.green : Colors.red,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                  ],
+                ],
+              ),
+            ],
           ),
           trailing: Row(
             mainAxisSize: MainAxisSize.min,

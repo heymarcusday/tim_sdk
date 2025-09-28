@@ -136,6 +136,9 @@
             "genericSig": "<τ_0_0 where τ_0_0 : opentoy_ios.OpenToyCoreDelegate>",
             "sugared_genericSig": "<Self where Self : opentoy_ios.OpenToyCoreDelegate>",
             "protocolReq": true,
+            "declAttributes": [
+              "RawDocComment"
+            ],
             "reqNewWitnessTableEntry": true,
             "funcSelfKind": "NonMutating"
           },
@@ -265,6 +268,9 @@
             "genericSig": "<τ_0_0 where τ_0_0 : opentoy_ios.OpenToyCoreDelegate>",
             "sugared_genericSig": "<Self where Self : opentoy_ios.OpenToyCoreDelegate>",
             "protocolReq": true,
+            "declAttributes": [
+              "RawDocComment"
+            ],
             "reqNewWitnessTableEntry": true,
             "funcSelfKind": "NonMutating"
           },
@@ -409,6 +415,9 @@
             "genericSig": "<τ_0_0 where τ_0_0 : opentoy_ios.OpenToyCoreDelegate>",
             "sugared_genericSig": "<Self where Self : opentoy_ios.OpenToyCoreDelegate>",
             "protocolReq": true,
+            "declAttributes": [
+              "RawDocComment"
+            ],
             "reqNewWitnessTableEntry": true,
             "funcSelfKind": "NonMutating"
           },
@@ -1825,6 +1834,367 @@
             ],
             "isFromExtension": true,
             "funcSelfKind": "NonMutating"
+          },
+          {
+            "kind": "Function",
+            "name": "deviceConnected",
+            "printedName": "deviceConnected(_:deviceInfo:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Void",
+                "printedName": "()"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "String",
+                "printedName": "Swift.String",
+                "usr": "s:SS"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "Dictionary",
+                "printedName": "[Swift.String : Any]",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "String",
+                    "printedName": "Swift.String",
+                    "usr": "s:SS"
+                  },
+                  {
+                    "kind": "TypeNominal",
+                    "name": "ProtocolComposition",
+                    "printedName": "Any"
+                  }
+                ],
+                "usr": "s:SD"
+              }
+            ],
+            "declKind": "Func",
+            "usr": "s:11opentoy_ios10OpenToyIOSC15deviceConnected_0F4InfoySS_SDySSypGtF",
+            "mangledName": "$s11opentoy_ios10OpenToyIOSC15deviceConnected_0F4InfoySS_SDySSypGtF",
+            "moduleName": "opentoy_ios",
+            "declAttributes": [
+              "AccessControl",
+              "RawDocComment"
+            ],
+            "isFromExtension": true,
+            "funcSelfKind": "NonMutating"
+          },
+          {
+            "kind": "Function",
+            "name": "deviceDisconnected",
+            "printedName": "deviceDisconnected(_:error:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Void",
+                "printedName": "()"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "String",
+                "printedName": "Swift.String",
+                "usr": "s:SS"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "Optional",
+                "printedName": "Swift.String?",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "String",
+                    "printedName": "Swift.String",
+                    "usr": "s:SS"
+                  }
+                ],
+                "usr": "s:Sq"
+              }
+            ],
+            "declKind": "Func",
+            "usr": "s:11opentoy_ios10OpenToyIOSC18deviceDisconnected_5errorySS_SSSgtF",
+            "mangledName": "$s11opentoy_ios10OpenToyIOSC18deviceDisconnected_5errorySS_SSSgtF",
+            "moduleName": "opentoy_ios",
+            "declAttributes": [
+              "AccessControl"
+            ],
+            "isFromExtension": true,
+            "funcSelfKind": "NonMutating"
+          },
+          {
+            "kind": "Function",
+            "name": "deviceConnectionFailed",
+            "printedName": "deviceConnectionFailed(_:error:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Void",
+                "printedName": "()"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "String",
+                "printedName": "Swift.String",
+                "usr": "s:SS"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "Optional",
+                "printedName": "Swift.String?",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "String",
+                    "printedName": "Swift.String",
+                    "usr": "s:SS"
+                  }
+                ],
+                "usr": "s:Sq"
+              }
+            ],
+            "declKind": "Func",
+            "usr": "s:11opentoy_ios10OpenToyIOSC22deviceConnectionFailed_5errorySS_SSSgtF",
+            "mangledName": "$s11opentoy_ios10OpenToyIOSC22deviceConnectionFailed_5errorySS_SSSgtF",
+            "moduleName": "opentoy_ios",
+            "declAttributes": [
+              "AccessControl"
+            ],
+            "isFromExtension": true,
+            "funcSelfKind": "NonMutating"
+          },
+          {
+            "kind": "Function",
+            "name": "characteristicValueUpdated",
+            "printedName": "characteristicValueUpdated(_:characteristicId:data:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Void",
+                "printedName": "()"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "String",
+                "printedName": "Swift.String",
+                "usr": "s:SS"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "String",
+                "printedName": "Swift.String",
+                "usr": "s:SS"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "Array",
+                "printedName": "[Swift.UInt8]",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "UInt8",
+                    "printedName": "Swift.UInt8",
+                    "usr": "s:s5UInt8V"
+                  }
+                ],
+                "usr": "s:Sa"
+              }
+            ],
+            "declKind": "Func",
+            "usr": "s:11opentoy_ios10OpenToyIOSC26characteristicValueUpdated_0F2Id4dataySS_SSSays5UInt8VGtF",
+            "mangledName": "$s11opentoy_ios10OpenToyIOSC26characteristicValueUpdated_0F2Id4dataySS_SSSays5UInt8VGtF",
+            "moduleName": "opentoy_ios",
+            "declAttributes": [
+              "AccessControl",
+              "RawDocComment"
+            ],
+            "isFromExtension": true,
+            "funcSelfKind": "NonMutating"
+          },
+          {
+            "kind": "Function",
+            "name": "characteristicReadFailed",
+            "printedName": "characteristicReadFailed(_:characteristicId:error:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Void",
+                "printedName": "()"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "String",
+                "printedName": "Swift.String",
+                "usr": "s:SS"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "String",
+                "printedName": "Swift.String",
+                "usr": "s:SS"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "String",
+                "printedName": "Swift.String",
+                "usr": "s:SS"
+              }
+            ],
+            "declKind": "Func",
+            "usr": "s:11opentoy_ios10OpenToyIOSC24characteristicReadFailed_0F2Id5errorySS_S2StF",
+            "mangledName": "$s11opentoy_ios10OpenToyIOSC24characteristicReadFailed_0F2Id5errorySS_S2StF",
+            "moduleName": "opentoy_ios",
+            "declAttributes": [
+              "AccessControl"
+            ],
+            "isFromExtension": true,
+            "funcSelfKind": "NonMutating"
+          },
+          {
+            "kind": "Function",
+            "name": "characteristicWriteSuccess",
+            "printedName": "characteristicWriteSuccess(_:characteristicId:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Void",
+                "printedName": "()"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "String",
+                "printedName": "Swift.String",
+                "usr": "s:SS"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "String",
+                "printedName": "Swift.String",
+                "usr": "s:SS"
+              }
+            ],
+            "declKind": "Func",
+            "usr": "s:11opentoy_ios10OpenToyIOSC26characteristicWriteSuccess_0F2IdySS_SStF",
+            "mangledName": "$s11opentoy_ios10OpenToyIOSC26characteristicWriteSuccess_0F2IdySS_SStF",
+            "moduleName": "opentoy_ios",
+            "declAttributes": [
+              "AccessControl"
+            ],
+            "isFromExtension": true,
+            "funcSelfKind": "NonMutating"
+          },
+          {
+            "kind": "Function",
+            "name": "characteristicWriteFailed",
+            "printedName": "characteristicWriteFailed(_:characteristicId:error:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Void",
+                "printedName": "()"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "String",
+                "printedName": "Swift.String",
+                "usr": "s:SS"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "String",
+                "printedName": "Swift.String",
+                "usr": "s:SS"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "String",
+                "printedName": "Swift.String",
+                "usr": "s:SS"
+              }
+            ],
+            "declKind": "Func",
+            "usr": "s:11opentoy_ios10OpenToyIOSC25characteristicWriteFailed_0F2Id5errorySS_S2StF",
+            "mangledName": "$s11opentoy_ios10OpenToyIOSC25characteristicWriteFailed_0F2Id5errorySS_S2StF",
+            "moduleName": "opentoy_ios",
+            "declAttributes": [
+              "AccessControl"
+            ],
+            "isFromExtension": true,
+            "funcSelfKind": "NonMutating"
+          },
+          {
+            "kind": "Function",
+            "name": "servicesDiscoveryFailed",
+            "printedName": "servicesDiscoveryFailed(_:error:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Void",
+                "printedName": "()"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "String",
+                "printedName": "Swift.String",
+                "usr": "s:SS"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "String",
+                "printedName": "Swift.String",
+                "usr": "s:SS"
+              }
+            ],
+            "declKind": "Func",
+            "usr": "s:11opentoy_ios10OpenToyIOSC23servicesDiscoveryFailed_5errorySS_SStF",
+            "mangledName": "$s11opentoy_ios10OpenToyIOSC23servicesDiscoveryFailed_5errorySS_SStF",
+            "moduleName": "opentoy_ios",
+            "declAttributes": [
+              "AccessControl",
+              "RawDocComment"
+            ],
+            "isFromExtension": true,
+            "funcSelfKind": "NonMutating"
+          },
+          {
+            "kind": "Function",
+            "name": "characteristicsDiscoveryFailed",
+            "printedName": "characteristicsDiscoveryFailed(_:serviceId:error:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Void",
+                "printedName": "()"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "String",
+                "printedName": "Swift.String",
+                "usr": "s:SS"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "String",
+                "printedName": "Swift.String",
+                "usr": "s:SS"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "String",
+                "printedName": "Swift.String",
+                "usr": "s:SS"
+              }
+            ],
+            "declKind": "Func",
+            "usr": "s:11opentoy_ios10OpenToyIOSC30characteristicsDiscoveryFailed_9serviceId5errorySS_S2StF",
+            "mangledName": "$s11opentoy_ios10OpenToyIOSC30characteristicsDiscoveryFailed_9serviceId5errorySS_S2StF",
+            "moduleName": "opentoy_ios",
+            "declAttributes": [
+              "AccessControl"
+            ],
+            "isFromExtension": true,
+            "funcSelfKind": "NonMutating"
           }
         ],
         "declKind": "Class",
@@ -1913,182 +2283,182 @@
     {
       "filePath": "\/Users\/ddd\/GitHub\/opentoy_workspace\/opentoy_ios\/Sources\/opentoy_ios\/opentoy_ios.swift",
       "kind": "Dictionary",
-      "offset": 2281,
+      "offset": 2377,
       "length": 3,
       "value": "[]"
     },
     {
       "filePath": "\/Users\/ddd\/GitHub\/opentoy_workspace\/opentoy_ios\/Sources\/opentoy_ios\/opentoy_ios.swift",
       "kind": "Dictionary",
-      "offset": 2348,
+      "offset": 2444,
       "length": 3,
       "value": "[]"
     },
     {
       "filePath": "\/Users\/ddd\/GitHub\/opentoy_workspace\/opentoy_ios\/Sources\/opentoy_ios\/opentoy_ios.swift",
       "kind": "Dictionary",
-      "offset": 2418,
+      "offset": 2514,
       "length": 3,
       "value": "[]"
     },
     {
       "filePath": "\/Users\/ddd\/GitHub\/opentoy_workspace\/opentoy_ios\/Sources\/opentoy_ios\/opentoy_ios.swift",
       "kind": "StringLiteral",
-      "offset": 15410,
+      "offset": 11998,
       "length": 44,
       "value": "\"com.opentoy.discovery.\""
     },
     {
       "filePath": "\/Users\/ddd\/GitHub\/opentoy_workspace\/opentoy_ios\/Sources\/opentoy_ios\/opentoy_ios.swift",
       "kind": "StringLiteral",
-      "offset": 15453,
+      "offset": 12041,
       "length": 2,
       "value": "\"\""
     },
     {
       "filePath": "\/Users\/ddd\/GitHub\/opentoy_workspace\/opentoy_ios\/Sources\/opentoy_ios\/opentoy_ios.swift",
       "kind": "Array",
-      "offset": 15492,
+      "offset": 12080,
       "length": 2,
       "value": "[]"
     },
     {
       "filePath": "\/Users\/ddd\/GitHub\/opentoy_workspace\/opentoy_ios\/Sources\/opentoy_ios\/opentoy_ios.swift",
       "kind": "Dictionary",
-      "offset": 15557,
+      "offset": 12145,
       "length": 3,
       "value": "[]"
     },
     {
       "filePath": "\/Users\/ddd\/GitHub\/opentoy_workspace\/opentoy_ios\/Sources\/opentoy_ios\/opentoy_ios.swift",
       "kind": "Array",
-      "offset": 15602,
+      "offset": 12190,
       "length": 2,
       "value": "[]"
     },
     {
       "filePath": "\/Users\/ddd\/GitHub\/opentoy_workspace\/opentoy_ios\/Sources\/opentoy_ios\/opentoy_ios.swift",
       "kind": "Dictionary",
-      "offset": 15669,
+      "offset": 12257,
       "length": 3,
       "value": "[]"
     },
     {
       "filePath": "\/Users\/ddd\/GitHub\/opentoy_workspace\/opentoy_ios\/Sources\/opentoy_ios\/opentoy_ios.swift",
       "kind": "Dictionary",
-      "offset": 15738,
+      "offset": 12326,
       "length": 3,
       "value": "[]"
     },
     {
       "filePath": "\/Users\/ddd\/GitHub\/opentoy_workspace\/opentoy_ios\/Sources\/opentoy_ios\/opentoy_ios.swift",
       "kind": "IntegerLiteral",
-      "offset": 15798,
+      "offset": 12386,
       "length": 1,
       "value": "0"
     },
     {
       "filePath": "\/Users\/ddd\/GitHub\/opentoy_workspace\/opentoy_ios\/Sources\/opentoy_ios\/opentoy_ios.swift",
       "kind": "StringLiteral",
-      "offset": 16988,
+      "offset": 13576,
       "length": 6,
       "value": "\"6010\""
     },
     {
       "filePath": "\/Users\/ddd\/GitHub\/opentoy_workspace\/opentoy_ios\/Sources\/opentoy_ios\/opentoy_ios.swift",
       "kind": "StringLiteral",
-      "offset": 17041,
+      "offset": 13629,
       "length": 6,
       "value": "\"6011\""
     },
     {
       "filePath": "\/Users\/ddd\/GitHub\/opentoy_workspace\/opentoy_ios\/Sources\/opentoy_ios\/opentoy_ios.swift",
       "kind": "StringLiteral",
-      "offset": 17097,
+      "offset": 13685,
       "length": 6,
       "value": "\"6012\""
     },
     {
       "filePath": "\/Users\/ddd\/GitHub\/opentoy_workspace\/opentoy_ios\/Sources\/opentoy_ios\/opentoy_ios.swift",
       "kind": "StringLiteral",
-      "offset": 17155,
+      "offset": 13743,
       "length": 6,
       "value": "\"6013\""
     },
     {
       "filePath": "\/Users\/ddd\/GitHub\/opentoy_workspace\/opentoy_ios\/Sources\/opentoy_ios\/opentoy_ios.swift",
       "kind": "StringLiteral",
-      "offset": 17213,
+      "offset": 13801,
       "length": 6,
       "value": "\"6014\""
     },
     {
       "filePath": "\/Users\/ddd\/GitHub\/opentoy_workspace\/opentoy_ios\/Sources\/opentoy_ios\/opentoy_ios.swift",
       "kind": "StringLiteral",
-      "offset": 17270,
+      "offset": 13858,
       "length": 6,
       "value": "\"6015\""
     },
     {
       "filePath": "\/Users\/ddd\/GitHub\/opentoy_workspace\/opentoy_ios\/Sources\/opentoy_ios\/opentoy_ios.swift",
       "kind": "StringLiteral",
-      "offset": 17346,
+      "offset": 13934,
       "length": 6,
       "value": "\"6050\""
     },
     {
       "filePath": "\/Users\/ddd\/GitHub\/opentoy_workspace\/opentoy_ios\/Sources\/opentoy_ios\/opentoy_ios.swift",
       "kind": "StringLiteral",
-      "offset": 17403,
+      "offset": 13991,
       "length": 6,
       "value": "\"6051\""
     },
     {
       "filePath": "\/Users\/ddd\/GitHub\/opentoy_workspace\/opentoy_ios\/Sources\/opentoy_ios\/opentoy_ios.swift",
       "kind": "StringLiteral",
-      "offset": 17475,
+      "offset": 14063,
       "length": 6,
       "value": "\"6000\""
     },
     {
       "filePath": "\/Users\/ddd\/GitHub\/opentoy_workspace\/opentoy_ios\/Sources\/opentoy_ios\/opentoy_ios.swift",
       "kind": "StringLiteral",
-      "offset": 17530,
+      "offset": 14118,
       "length": 6,
       "value": "\"6001\""
     },
     {
       "filePath": "\/Users\/ddd\/GitHub\/opentoy_workspace\/opentoy_ios\/Sources\/opentoy_ios\/opentoy_ios.swift",
       "kind": "StringLiteral",
-      "offset": 17588,
+      "offset": 14176,
       "length": 6,
       "value": "\"6002\""
     },
     {
       "filePath": "\/Users\/ddd\/GitHub\/opentoy_workspace\/opentoy_ios\/Sources\/opentoy_ios\/opentoy_ios.swift",
       "kind": "StringLiteral",
-      "offset": 17647,
+      "offset": 14235,
       "length": 6,
       "value": "\"6003\""
     },
     {
       "filePath": "\/Users\/ddd\/GitHub\/opentoy_workspace\/opentoy_ios\/Sources\/opentoy_ios\/opentoy_ios.swift",
       "kind": "StringLiteral",
-      "offset": 17707,
+      "offset": 14295,
       "length": 6,
       "value": "\"600a\""
     },
     {
       "filePath": "\/Users\/ddd\/GitHub\/opentoy_workspace\/opentoy_ios\/Sources\/opentoy_ios\/opentoy_ios.swift",
       "kind": "FloatLiteral",
-      "offset": 17789,
+      "offset": 14377,
       "length": 5,
       "value": "0.001"
     },
     {
       "filePath": "\/Users\/ddd\/GitHub\/opentoy_workspace\/opentoy_ios\/Sources\/opentoy_ios\/opentoy_ios.swift",
       "kind": "FloatLiteral",
-      "offset": 17847,
+      "offset": 14435,
       "length": 3,
       "value": "5.0"
     }

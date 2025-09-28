@@ -1,23 +1,23 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-# Script to update opentoy_ios framework in tim_sdk
+# Script to update opentoy_ios framework in TIM
 # Usage: ./update_opentoy_framework.sh [opentoy_ios_path]
 
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
-TIM_SDK_ROOT="$(cd "${SCRIPT_DIR}/.." && pwd)"
-TIM_SDK_IOS_DIR="${TIM_SDK_ROOT}/ios"
+TIM_ROOT="$(cd "${SCRIPT_DIR}/.." && pwd)"
+TIM_IOS_DIR="${TIM_ROOT}/ios"
 OPENTOY_IOS_PATH="${1:-../opentoy_ios}"
 
 # Resolve absolute path for opentoy_ios
 if [[ "${OPENTOY_IOS_PATH:0:1}" == "/" ]]; then
     OPENTOY_IOS_ABS_PATH="${OPENTOY_IOS_PATH}"
 else
-    OPENTOY_IOS_ABS_PATH="$(cd "${TIM_SDK_ROOT}/${OPENTOY_IOS_PATH}" && pwd)"
+    OPENTOY_IOS_ABS_PATH="$(cd "${TIM_ROOT}/${OPENTOY_IOS_PATH}" && pwd)"
 fi
 
 OPENTOY_FRAMEWORK_SOURCE="${OPENTOY_IOS_ABS_PATH}/Build/opentoy_ios.xcframework"
-OPENTOY_FRAMEWORK_DEST="${TIM_SDK_IOS_DIR}/opentoy_ios.xcframework"
+OPENTOY_FRAMEWORK_DEST="${TIM_IOS_DIR}/opentoy_ios.xcframework"
 
 log() {
     echo "[update_opentoy_framework] $*"

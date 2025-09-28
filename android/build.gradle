@@ -1,4 +1,4 @@
-group = "com.mobius.tim_sdk"
+group = "com.mobius.tim"
 version = "1.0-SNAPSHOT"
 
 buildscript {
@@ -25,7 +25,7 @@ apply plugin: "com.android.library"
 apply plugin: "kotlin-android"
 
 android {
-    namespace = "com.mobius.tim_sdk"
+    namespace = "com.mobius.tim"
 
     compileSdk = 36
 

@@ -7,8 +7,8 @@ public class TimSdkPlugin: NSObject, FlutterPlugin, FlutterStreamHandler, OpenTo
   private var eventSink: FlutterEventSink?
   
   public static func register(with registrar: FlutterPluginRegistrar) {
-    let channel = FlutterMethodChannel(name: "tim_sdk", binaryMessenger: registrar.messenger())
-    let eventChannel = FlutterEventChannel(name: "tim_sdk/events", binaryMessenger: registrar.messenger())
+    let channel = FlutterMethodChannel(name: "tim", binaryMessenger: registrar.messenger())
+    let eventChannel = FlutterEventChannel(name: "tim/events", binaryMessenger: registrar.messenger())
     let instance = TimSdkPlugin()
     registrar.addMethodCallDelegate(instance, channel: channel)
     eventChannel.setStreamHandler(instance)
@@ -121,156 +121,178 @@ public class TimSdkPlugin: NSObject, FlutterPlugin, FlutterStreamHandler, OpenTo
   public func bluetoothStateChanged(_ state: String) {
     print("Bluetooth state changed: \(state)")
     
-    // 发送蓝牙状态变化事件到 Flutter
-    if let eventSink = self.eventSink {
-      let eventData: [String: Any] = [
-        "type": "bluetoothStateChanged",
-        "state": state
-      ]
-      eventSink(eventData)
+    // 发送蓝牙状态变化事件到 Flutter（确保在主线程上执行）
+    DispatchQueue.main.async {
+      if let eventSink = self.eventSink {
+        let eventData: [String: Any] = [
+          "type": "bluetoothStateChanged",
+          "state": state
+        ]
+        eventSink(eventData)
+      }
     }
   }
   
   public func deviceDiscovered(_ device: [String: Any]) {
     print("Device discovered: \(device)")
     
-    // 发送设备发现事件到 Flutter
-    if let eventSink = self.eventSink {
-      let eventData: [String: Any] = [
-        "type": "deviceDiscovered",
-        "device": device
-      ]
-      eventSink(eventData)
+    // 发送设备发现事件到 Flutter（确保在主线程上执行）
+    DispatchQueue.main.async {
+      if let eventSink = self.eventSink {
+        let eventData: [String: Any] = [
+          "type": "deviceDiscovered",
+          "device": device
+        ]
+        eventSink(eventData)
+      }
     }
   }
   
   public func deviceConnected(_ deviceId: String, deviceInfo: [String: Any]) {
     print("Device connected: \(deviceId), info: \(deviceInfo)")
     
-    // 发送设备连接事件到 Flutter
-    if let eventSink = self.eventSink {
-      let eventData: [String: Any] = [
-        "type": "deviceConnected",
-        "deviceId": deviceId,
-        "deviceInfo": deviceInfo
-      ]
-      eventSink(eventData)
+    // 发送设备连接事件到 Flutter（确保在主线程上执行）
+    DispatchQueue.main.async {
+      if let eventSink = self.eventSink {
+        let eventData: [String: Any] = [
+          "type": "deviceConnected",
+          "deviceId": deviceId,
+          "deviceInfo": deviceInfo
+        ]
+        eventSink(eventData)
+      }
     }
   }
   
   public func deviceDisconnected(_ deviceId: String, error: String?) {
     print("Device disconnected: \(deviceId), error: \(error ?? "none")")
     
-    // 发送设备断开事件到 Flutter
-    if let eventSink = self.eventSink {
-      let eventData: [String: Any] = [
-        "type": "deviceDisconnected",
-        "deviceId": deviceId,
-        "error": error ?? ""
-      ]
-      eventSink(eventData)
+    // 发送设备断开事件到 Flutter（确保在主线程上执行）
+    DispatchQueue.main.async {
+      if let eventSink = self.eventSink {
+        let eventData: [String: Any] = [
+          "type": "deviceDisconnected",
+          "deviceId": deviceId,
+          "error": error ?? ""
+        ]
+        eventSink(eventData)
+      }
     }
   }
   
   public func deviceConnectionFailed(_ deviceId: String, error: String?) {
     print("Device connection failed: \(deviceId), error: \(error ?? "none")")
     
-    // 发送设备连接失败事件到 Flutter
-    if let eventSink = self.eventSink {
-      let eventData: [String: Any] = [
-        "type": "deviceConnectionFailed",
-        "deviceId": deviceId,
-        "error": error ?? ""
-      ]
-      eventSink(eventData)
+    // 发送设备连接失败事件到 Flutter（确保在主线程上执行）
+    DispatchQueue.main.async {
+      if let eventSink = self.eventSink {
+        let eventData: [String: Any] = [
+          "type": "deviceConnectionFailed",
+          "deviceId": deviceId,
+          "error": error ?? ""
+        ]
+        eventSink(eventData)
+      }
     }
   }
   
   public func characteristicValueUpdated(_ deviceId: String, characteristicId: String, data: [UInt8]) {
     print("Characteristic value updated: \(deviceId), \(characteristicId), data: \(data)")
     
-    // 发送特征值更新事件到 Flutter
-    if let eventSink = self.eventSink {
-      let eventData: [String: Any] = [
-        "type": "characteristicValueUpdated",
-        "deviceId": deviceId,
-        "characteristicId": characteristicId,
-        "data": data.map { Int($0) } // 转换为 Int 数组
-      ]
-      eventSink(eventData)
+    // 发送特征值更新事件到 Flutter（确保在主线程上执行）
+    DispatchQueue.main.async {
+      if let eventSink = self.eventSink {
+        let eventData: [String: Any] = [
+          "type": "characteristicValueUpdated",
+          "deviceId": deviceId,
+          "characteristicId": characteristicId,
+          "data": data.map { Int($0) } // 转换为 Int 数组
+        ]
+        eventSink(eventData)
+      }
     }
   }
   
   public func characteristicReadFailed(_ deviceId: String, characteristicId: String, error: String) {
     print("Characteristic read failed: \(deviceId), \(characteristicId), error: \(error)")
     
-    // 发送特征值读取失败事件到 Flutter
-    if let eventSink = self.eventSink {
-      let eventData: [String: Any] = [
-        "type": "characteristicReadFailed",
-        "deviceId": deviceId,
-        "characteristicId": characteristicId,
-        "error": error
-      ]
-      eventSink(eventData)
+    // 发送特征值读取失败事件到 Flutter（确保在主线程上执行）
+    DispatchQueue.main.async {
+      if let eventSink = self.eventSink {
+        let eventData: [String: Any] = [
+          "type": "characteristicReadFailed",
+          "deviceId": deviceId,
+          "characteristicId": characteristicId,
+          "error": error
+        ]
+        eventSink(eventData)
+      }
     }
   }
   
   public func characteristicWriteSuccess(_ deviceId: String, characteristicId: String) {
     print("Characteristic write success: \(deviceId), \(characteristicId)")
     
-    // 发送特征值写入成功事件到 Flutter
-    if let eventSink = self.eventSink {
-      let eventData: [String: Any] = [
-        "type": "characteristicWriteSuccess",
-        "deviceId": deviceId,
-        "characteristicId": characteristicId
-      ]
-      eventSink(eventData)
+    // 发送特征值写入成功事件到 Flutter（确保在主线程上执行）
+    DispatchQueue.main.async {
+      if let eventSink = self.eventSink {
+        let eventData: [String: Any] = [
+          "type": "characteristicWriteSuccess",
+          "deviceId": deviceId,
+          "characteristicId": characteristicId
+        ]
+        eventSink(eventData)
+      }
     }
   }
   
   public func characteristicWriteFailed(_ deviceId: String, characteristicId: String, error: String) {
     print("Characteristic write failed: \(deviceId), \(characteristicId), error: \(error)")
     
-    // 发送特征值写入失败事件到 Flutter
-    if let eventSink = self.eventSink {
-      let eventData: [String: Any] = [
-        "type": "characteristicWriteFailed",
-        "deviceId": deviceId,
-        "characteristicId": characteristicId,
-        "error": error
-      ]
-      eventSink(eventData)
+    // 发送特征值写入失败事件到 Flutter（确保在主线程上执行）
+    DispatchQueue.main.async {
+      if let eventSink = self.eventSink {
+        let eventData: [String: Any] = [
+          "type": "characteristicWriteFailed",
+          "deviceId": deviceId,
+          "characteristicId": characteristicId,
+          "error": error
+        ]
+        eventSink(eventData)
+      }
     }
   }
   
   public func servicesDiscoveryFailed(_ deviceId: String, error: String) {
     print("Services discovery failed: \(deviceId), error: \(error)")
     
-    // 发送服务发现失败事件到 Flutter
-    if let eventSink = self.eventSink {
-      let eventData: [String: Any] = [
-        "type": "servicesDiscoveryFailed",
-        "deviceId": deviceId,
-        "error": error
-      ]
-      eventSink(eventData)
+    // 发送服务发现失败事件到 Flutter（确保在主线程上执行）
+    DispatchQueue.main.async {
+      if let eventSink = self.eventSink {
+        let eventData: [String: Any] = [
+          "type": "servicesDiscoveryFailed",
+          "deviceId": deviceId,
+          "error": error
+        ]
+        eventSink(eventData)
+      }
     }
   }
   
   public func characteristicsDiscoveryFailed(_ deviceId: String, serviceId: String, error: String) {
     print("Characteristics discovery failed: \(deviceId), \(serviceId), error: \(error)")
     
-    // 发送特征值发现失败事件到 Flutter
-    if let eventSink = self.eventSink {
-      let eventData: [String: Any] = [
-        "type": "characteristicsDiscoveryFailed",
-        "deviceId": deviceId,
-        "serviceId": serviceId,
-        "error": error
-      ]
-      eventSink(eventData)
+    // 发送特征值发现失败事件到 Flutter（确保在主线程上执行）
+    DispatchQueue.main.async {
+      if let eventSink = self.eventSink {
+        let eventData: [String: Any] = [
+          "type": "characteristicsDiscoveryFailed",
+          "deviceId": deviceId,
+          "serviceId": serviceId,
+          "error": error
+        ]
+        eventSink(eventData)
+      }
     }
   }
 }

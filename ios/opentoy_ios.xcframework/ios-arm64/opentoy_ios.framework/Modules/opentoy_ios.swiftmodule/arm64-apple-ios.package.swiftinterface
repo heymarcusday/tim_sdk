@@ -63,3 +63,14 @@ extension opentoy_ios.OpenToyIOS : CoreBluetooth.CBPeripheralDelegate {
   @objc dynamic public func peripheral(_ peripheral: CoreBluetooth.CBPeripheral, didUpdateValueFor characteristic: CoreBluetooth.CBCharacteristic, error: (any Swift.Error)?)
   @objc dynamic public func peripheral(_ peripheral: CoreBluetooth.CBPeripheral, didWriteValueFor characteristic: CoreBluetooth.CBCharacteristic, error: (any Swift.Error)?)
 }
+extension opentoy_ios.OpenToyIOS {
+  public func deviceConnected(_ deviceId: Swift.String, deviceInfo: [Swift.String : Any])
+  public func deviceDisconnected(_ deviceId: Swift.String, error: Swift.String?)
+  public func deviceConnectionFailed(_ deviceId: Swift.String, error: Swift.String?)
+  public func characteristicValueUpdated(_ deviceId: Swift.String, characteristicId: Swift.String, data: [Swift.UInt8])
+  public func characteristicReadFailed(_ deviceId: Swift.String, characteristicId: Swift.String, error: Swift.String)
+  public func characteristicWriteSuccess(_ deviceId: Swift.String, characteristicId: Swift.String)
+  public func characteristicWriteFailed(_ deviceId: Swift.String, characteristicId: Swift.String, error: Swift.String)
+  public func servicesDiscoveryFailed(_ deviceId: Swift.String, error: Swift.String)
+  public func characteristicsDiscoveryFailed(_ deviceId: Swift.String, serviceId: Swift.String, error: Swift.String)
+}

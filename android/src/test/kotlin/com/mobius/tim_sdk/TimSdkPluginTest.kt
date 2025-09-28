@@ -1,4 +1,4 @@
-package com.mobius.tim_sdk
+package com.mobius.tim
 
 import io.flutter.plugin.common.MethodCall
 import io.flutter.plugin.common.MethodChannel
