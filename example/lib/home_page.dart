@@ -42,7 +42,7 @@ class _HomePageState extends State<HomePage> {
 
   void _setupEventListeners() {
     // 监听设备发现事件
-    _eventSubscription = _tim.deviceDiscovered.where((e) => e.name == 'YUMETA').listen((device) {
+    _eventSubscription = _tim.deviceDiscovered.where((e) => e.name == 'GOSH').listen((device) {
       if (!mounted) return;
       setState(() {
         // 避免重复添加设备
